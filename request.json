@@ -1,0 +1,47 @@
+{
+    "displayName": "hello-world",
+    "pipelineSpec": {
+        "deploymentConfig": {
+            "@type": "type.googleapis.com/ml_pipelines.PipelineDeploymentConfig",
+            "executors": {
+                "HelloWorld_executor": {
+                    "container": {
+                        "command": [
+                            "sleep",
+                            "1"
+                        ],
+                        "image": "google/cloud-sdk:latest"
+                    }
+                }
+            }
+        },
+        "pipelineInfo": {
+            "name": "hello-world"
+        },
+        "root": {
+            "dag": {
+                "tasks": {
+                    "task-test-hello-world": {
+                        "taskInfo": {
+                            "name": "HelloWorld"
+                        },
+                        "componentRef": {
+                            "name": "HelloWorld"
+                        },
+                        "cachingOptions": {}
+                    }
+                }
+            }
+        },
+        "components": {
+            "HelloWorld": {
+                "executorLabel": "HelloWorld_executor"
+            }
+        },
+        "schemaVersion": "2.0.0"
+    },
+    "runtimeConfig": {
+        "gcsOutputDirectory": "gs://pipeline_root_ls"
+    },
+    "serviceAccount": "pipeline-runner@ls-scheduled-pipelines-2c8b.iam.gserviceaccount.com"
+}
