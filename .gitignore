@@ -132,4 +132,4 @@ dmypy.json
 
 # Secret files
 secrets/*
-!secrets/.gitkeep
+!secrets/.env.template

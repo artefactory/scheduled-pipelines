@@ -1,46 +1,11 @@
 {
+    "name": "projects/792837275562/locations/europe-west9/pipelineJobs/bash-pipeline-$(date +%Y%m%d-%H%M%S)",
     "displayName": "hello-world",
-    "pipelineSpec": {
-        "components": {
-            "HelloWorld": {
-                "executorLabel": "HelloWorld_executor"
-            }
-        },
-        "schemaVersion": "2.0.0",
-        "root": {
-            "dag": {
-                "tasks": {
-                    "task-test-hello-world": {
-                        "taskInfo": {
-                            "name": "HelloWorld"
-                        },
-                        "cachingOptions": {},
-                        "componentRef": {
-                            "name": "HelloWorld"
-                        }
-                    }
-                }
-            }
-        },
-        "pipelineInfo": {
-            "name": "hello-world"
-        },
-        "deploymentSpec": {
-            "executors": {
-                "HelloWorld_executor": {
-                    "container": {
-                        "image": "google/cloud-sdk:latest",
-                        "command": [
-                            "sleep",
-                            "1"
-                        ]
-                    }
-                }
-            }
-        }
-    },
     "runtimeConfig": {
-        "gcsOutputDirectory": "gs://pipeline_root_ls"
+        "gcsOutputDirectory": "gs://pipeline_root_ls",
+        "parameterValues": {
+            "name": "test!"
+        }
     },
     "serviceAccount": "pipeline-runner@ls-scheduled-pipelines-2c8b.iam.gserviceaccount.com",
     "templateUri": "https://europe-west9-kfp.pkg.dev/ls-scheduled-pipelines-2c8b/pipelines/first-template/latest"
