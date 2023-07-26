@@ -16,23 +16,27 @@ PROJECT_ID = os.getenv("PROJECT_ID")
 REGION = os.getenv("REGION")
 PIPELINE_ROOT_PATH = os.getenv("PIPELINE_ROOT_PATH")
 SERVICE_ACCOUNT_ID_PIPELINE = os.getenv("SERVICE_ACCOUNT_ID_PIPELINE")
+REPOSITORY_NAME = os.getenv("REPOSITORY_NAME")
+SIMPLE_PIPELINE_NAME = os.getenv("SIMPLE_PIPELINE_NAME")
 service_account = f"{SERVICE_ACCOUNT_ID_PIPELINE}@{PROJECT_ID}.iam.gserviceaccount.com"
 
 
-@kfp.dsl.pipeline(name="hello-world-pipeline")
+@kfp.dsl.pipeline(name=SIMPLE_PIPELINE_NAME)
 def pipeline(name: str) -> None:
     """Test pipeline."""
     hello_world_op = hello_world(name=name)  # noqa: F841
 
 
 if __name__ == "__main__":
-    pipeline_filename = "hello_pipeline.yaml"
+    pipeline_filename = str(
+        ROOT_PATH / "local_registry/hello_pipeline.yaml"
+    )  # The compiler requires a str path
     compiler.Compiler().compile(
         pipeline_func=pipeline,
         package_path=pipeline_filename,
         pipeline_parameters={"name": "default"},
     )
-    client = RegistryClient(host=f"https://{REGION}-kfp.pkg.dev/{PROJECT_ID}/pipelines")
+    client = RegistryClient(host=f"https://{REGION}-kfp.pkg.dev/{PROJECT_ID}/{REPOSITORY_NAME}")
     client.upload_pipeline(file_name=pipeline_filename, tags=["latest"])
     aip.init(
         project=PROJECT_ID,
@@ -40,12 +44,12 @@ if __name__ == "__main__":
     )
 
     # Prepare the pipeline job
-    job = aip.PipelineJob(
-        display_name="hello-world-pipeline-job",
-        template_path="hello_pipeline.yaml",
-        pipeline_root=PIPELINE_ROOT_PATH,
-        location=REGION,
-        parameter_values={"name": "Coucou"},
-    )
+    # job = aip.PipelineJob(
+    #     display_name="hello-world-pipeline-job",
+    #     template_path="hello_pipeline.yaml",
+    #     pipeline_root=PIPELINE_ROOT_PATH,
+    #     location=REGION,
+    #     parameter_values={"name": "Coucou"},
+    # )
 
-    job.run(service_account=service_account)
+    # job.run(service_account=service_account)
