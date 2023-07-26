@@ -1,16 +1,22 @@
 """Entry point to compile and run the pipeline."""
+import os
+
 import google.cloud.aiplatform as aip
 import kfp
+from dotenv import load_dotenv
 from kfp import compiler
 from kfp.registry import RegistryClient
 
 from components.hello_world import hello_world
+from config.config import ROOT_PATH
 
-PROJECT_ID = "ls-scheduled-pipelines-2c8b"
-PROJECT_REGION = "europe-west9"
-PIPELINE_ROOT_PATH = "gs://pipeline_root_ls"
-SERVICE_ACCOUNT = "pipeline-runner@ls-scheduled-pipelines-2c8b.iam.gserviceaccount.com"
-LOCATION = "europe-west9"
+load_dotenv(dotenv_path=ROOT_PATH / "config/.env.shared")
+
+PROJECT_ID = os.getenv("PROJECT_ID")
+REGION = os.getenv("REGION")
+PIPELINE_ROOT_PATH = os.getenv("PIPELINE_ROOT_PATH")
+SERVICE_ACCOUNT_ID_PIPELINE = os.getenv("SERVICE_ACCOUNT_ID_PIPELINE")
+service_account = f"{SERVICE_ACCOUNT_ID_PIPELINE}@{PROJECT_ID}.iam.gserviceaccount.com"
 
 
 @kfp.dsl.pipeline(name="hello-world-pipeline")
@@ -26,7 +32,7 @@ if __name__ == "__main__":
         package_path=pipeline_filename,
         pipeline_parameters={"name": "default"},
     )
-    client = RegistryClient(host=f"https://{LOCATION}-kfp.pkg.dev/{PROJECT_ID}/pipelines")
+    client = RegistryClient(host=f"https://{REGION}-kfp.pkg.dev/{PROJECT_ID}/pipelines")
     client.upload_pipeline(file_name=pipeline_filename, tags=["latest"])
     aip.init(
         project=PROJECT_ID,
@@ -38,8 +44,8 @@ if __name__ == "__main__":
         display_name="hello-world-pipeline-job",
         template_path="hello_pipeline.yaml",
         pipeline_root=PIPELINE_ROOT_PATH,
-        location=LOCATION,
+        location=REGION,
         parameter_values={"name": "Coucou"},
     )
 
-    job.run(service_account=SERVICE_ACCOUNT)
+    job.run(service_account=service_account)
