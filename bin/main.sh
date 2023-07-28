@@ -13,7 +13,7 @@ gcloud iam service-accounts create ${SERVICE_ACCOUNT_ID_SCHEDULER} \
     --display-name="Cloud scheduler SA" \
     --project=${PROJECT_ID}
 
-# Create cloud resources
+# # Create cloud resources
 bash bin/create_bucket.sh
 bash bin/create_artifact_registry.sh
 bash bin/deploy_cloud_function.sh
@@ -22,11 +22,11 @@ bash bin/create_cloud_scheduler.sh
 # Grant permissions
 gcloud projects add-iam-policy-binding ${PROJECT_ID} \
     --member="serviceAccount:${SERVICE_ACCOUNT_ID_PIPELINE}@${PROJECT_ID}.iam.gserviceaccount.com" \
-    --role="roles/aiplatform.user"
+    --role="roles/editor" # TODO: apply least privilege principle
 
 gcloud storage buckets add-iam-policy-binding ${PIPELINE_ROOT_PATH} \
     --member="serviceAccount:${SERVICE_ACCOUNT_ID_PIPELINE}@${PROJECT_ID}.iam.gserviceaccount.com" \
-    --role="roles/storage.objectAdmin"
+    --role="roles/storage.admin"
 
 gcloud functions add-iam-policy-binding ${CLOUD_FUNCTION_NAME} --region=${REGION} \
     --member="serviceAccount:${SERVICE_ACCOUNT_ID_SCHEDULER}@${PROJECT_ID}.iam.gserviceaccount.com" \

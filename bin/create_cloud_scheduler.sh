@@ -1,5 +1,3 @@
-source config/.env.shared
-
 service_endpoint="${REGION}-aiplatform.googleapis.com"
 parent="projects/${PROJECT_ID}/locations/${REGION}"
 

@@ -1,5 +1,3 @@
-source config/.env.shared
-
 gcloud artifacts repositories create ${REPOSITORY_NAME} \
     --repository-format=kfp \
     --location=${REGION} \

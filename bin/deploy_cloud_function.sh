@@ -1,5 +1,3 @@
-source config/.env.shared
-
 cloud_function_dir="cloud_function"
 
 cd ${cloud_function_dir}
