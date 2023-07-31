@@ -2,3 +2,8 @@
 pandas==1.5.3
 numpy==1.24.2
 # TODO: find the bug with grpcio...
+kfp==2.1.2
+google.cloud.aiplatform==1.28.1
+python-dotenv==1.0.0
+typer==0.9.0
+loguru==0.7.0
