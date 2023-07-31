@@ -19,3 +19,8 @@ install_precommit:
 deploy_docs:
 	@mkdocs build
 	@mkdocs gh-deploy
+
+# help: cloud_setup				- Setup cloud environment (service accounts, roles and resources)
+.PHONY: cloud_setup
+cloud_setup:
+	@bash bin/cloud_setup.sh

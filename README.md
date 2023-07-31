@@ -12,9 +12,8 @@
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-informational?logo=pre-commit&logoColor=white)](https://github.com/artefactory-fr/scheduled-pipelines/blob/main/.pre-commit-config.yaml)
 </div>
 
-TODO: if not done already, check out the [MORE INFO](MORE_INFO.md) file for more information about the generated repository. This file can be deleted once you are done reading it.
-
-Test repo to test the best solution to schedule Vertex AI pipelines
+This repository enables to easily schedule existing Vertex pipelines using Cloud Scheduler and Cloud Functions.
+It also facilitates the creation of the required service accounts and the configuration of the required permissions.
 
 ## Table of Contents
 
@@ -33,15 +32,26 @@ To install the required packages in a virtual environment, run the following com
 make install
 ```
 
-A complete list of available commands can be found using the following command:
-
-```bash
-make help
-```
-
 ## Usage
 
-TODO: Add usage instructions here
+To use this repository, you need to:
+
+1. Enable the following APIs in your project:
+   - Cloud Scheduler API
+   - Cloud Functions API
+   - Cloud Build API
+   - Artifact Registry API
+   - Vertex AI API
+
+2. Compile the desired Vertex pipeline (and upload it to Artifact Registry) using the command:
+
+TODO
+
+3. Run the following command to create the required service accounts and cloud resources:
+
+```
+make cloud_setup
+```
 
 ## Documentation
 
