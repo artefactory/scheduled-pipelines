@@ -22,6 +22,8 @@ REPOSITORY_NAME = os.getenv("REPOSITORY_NAME")
 SIMPLE_PIPELINE_NAME = os.getenv("SIMPLE_PIPELINE_NAME")
 service_account = f"{SERVICE_ACCOUNT_ID_PIPELINE}@{PROJECT_ID}.iam.gserviceaccount.com"
 
+app = typer.Typer()
+
 
 def compile_pipeline(upload_to_ar: bool = True) -> None:
     """Compile the pipeline and upload it to Artifact registry, if wanted."""
@@ -38,6 +40,7 @@ def compile_pipeline(upload_to_ar: bool = True) -> None:
         client.upload_pipeline(file_name=pipeline_filename, tags=["latest"])
 
 
+@app.command()
 def run_pipeline(
     pipeline_template_path: str,
     recompile: bool = True,
@@ -73,4 +76,4 @@ def run_pipeline(
 
 
 if __name__ == "__main__":
-    typer.run(run_pipeline)
+    app()
