@@ -1,6 +1,6 @@
 set -e # Exit immediately if a command exits with a non-zero status.
 set -a # Mark variables which are modified or created for export.
-source config/.env.shared
+source secrets/.env
 
 
 # # Create service accounts

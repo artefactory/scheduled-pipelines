@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from components.hello_world import hello_world
 from config.config import ROOT_PATH
 
-load_dotenv(dotenv_path=ROOT_PATH / "config/.env.shared")
+load_dotenv(dotenv_path=ROOT_PATH / "secrets/.env")
 
 PROJECT_ID = os.getenv("PROJECT_ID")
 REGION = os.getenv("REGION")

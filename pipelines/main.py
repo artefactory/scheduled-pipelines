@@ -12,7 +12,7 @@ from kfp.registry import RegistryClient
 from config.config import ROOT_PATH
 from pipelines.pipeline import pipeline
 
-load_dotenv(dotenv_path=ROOT_PATH / "config/.env.shared")
+load_dotenv(dotenv_path=ROOT_PATH / "secrets/.env")
 
 PROJECT_ID = os.getenv("PROJECT_ID")
 REGION = os.getenv("REGION")

@@ -22,7 +22,6 @@ It also facilitates the creation of the required service accounts and the config
   - [Installation](#installation)
   - [Usage](#usage)
   - [Documentation](#documentation)
-  - [Repository Structure](#repository-structure)
 
 ## Installation
 
@@ -43,11 +42,13 @@ To use this repository, you need to:
    - Artifact Registry API
    - Vertex AI API
 
-2. Compile the desired Vertex pipeline (and upload it to Artifact Registry) using the command:
+2. Create the file `secrets/.env` with the appropriate values for your project. You can use the file `secrets/.env.template` as a template.
+
+3. Compile the desired Vertex pipeline (and upload it to Artifact Registry) using the command:
 
 TODO
 
-3. Run the following command to create the required service accounts and cloud resources:
+4. Run the following command to create the required service accounts and cloud resources:
 
 ```
 make cloud_setup
@@ -55,32 +56,4 @@ make cloud_setup
 
 ## Documentation
 
-TODO: Github pages is not enabled by default, you need to enable it in the repository settings: Settings > Pages > Source: "Deploy from a branch" / Branch: "gh-pages" / Folder: "/(root)"
-
-A detailed documentation of this project is available [here](https://artefactory-fr.github.io/scheduled-pipelines/)
-
-To serve the documentation locally, run the following command:
-
-```bash
-mkdocs serve
-```
-
-To build it and deploy it to GitHub pages, run the following command:
-
-```bash
-make deploy_docs
-```
-
-## Repository Structure
-
-```
-.
-├── .github    <- GitHub Actions workflows and PR template
-├── bin        <- Bash files
-├── config     <- Configuration files
-├── docs       <- Documentation files (mkdocs)
-├── lib        <- Python modules
-├── notebooks  <- Jupyter notebooks
-├── secrets    <- Secret files (ignored by git)
-└── tests      <- Unit tests
-```
+A detailed documentation of this project is available on Skaff.  TODO: add link
