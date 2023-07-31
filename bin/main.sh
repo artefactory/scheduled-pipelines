@@ -1,6 +1,7 @@
+set -e # Exit immediately if a command exits with a non-zero status.
+set -a # Mark variables which are modified or created for export.
 source config/.env.shared
 
-set -e
 
 # # Create service accounts
 gcloud iam service-accounts create ${SERVICE_ACCOUNT_ID_PIPELINE} \
