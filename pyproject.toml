@@ -4,9 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scheduled-pipelines"
-authors = [
-  { name = "luca-serra", email = "luca.serra@artefact.com" },
-] # TODO: Add more authors if collaborators are added
+authors = [{ name = "luca-serra", email = "luca.serra@artefact.com" }]
 description = "Test repo to test the best solution to schedule Vertex AI pipelines"
 version = "0.0.1"
 readme = "README.md"
