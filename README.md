@@ -49,6 +49,7 @@ To use this repository, you need to:
    - Cloud Functions API
    - Cloud Build API
    - Artifact Registry API
+   - Cloud Storage API
    - Vertex AI API
 
 3. Compile the desired Vertex pipeline in a YAML file (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
@@ -73,6 +74,23 @@ This command will:
 1. Create the service accounts required to run the scheduled pipelines and schedule them.
 2. Create the necessary cloud resources (Cloud Scheduler, Cloud Functions, Storage Bucket, Artifact Registry repository).
 3. Give the appropriate permissions to the service accounts.
+
+Note: the required permissions required to execute these steps are:
+
+| Resource creation        | Permission(s) required                                    |
+| ------------------------ | --------------------------------------------------------- |
+| Create service account   | iam.serviceAccounts.create                                |
+| Create bucket            | storage.buckets.create                                    |
+| Create artifact registry | artifactregistry.repositories.create                      |
+| Creation cloud function  | cloudfunctions.functions.create, cloudbuild.builds.create |
+| Create cloud scheduler   | cloudscheduler.jobs.create                                |
+
+| Resource to give permission to (iam-policy-binding) | Permission required                        |
+| ----------------- | ------------------------------------------ |
+| Project           | resourcemanager.projects.setIamPolicy      |
+| Cloud storage     | storage.buckets.setIamPolicy               |
+| Cloud function    | cloudfunctions.functions.setIamPolicy      |
+| Artifact registry | artifactregistry.repositories.setIamPolicy |
 
 ## Documentation
 
