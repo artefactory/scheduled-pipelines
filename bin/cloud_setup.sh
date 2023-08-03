@@ -47,7 +47,7 @@ parent="projects/${PROJECT_ID}/locations/${REGION}"
 gcloud scheduler jobs create http schedule_pipeline \
     --uri https://${REGION}-${PROJECT_ID}.cloudfunctions.net/${CLOUD_FUNCTION_NAME} \
     --location ${REGION} \
-    --schedule ${CRON_SCHEDULE} \
+    --schedule "${CRON_SCHEDULE}" \
     --oidc-service-account-email ${SERVICE_ACCOUNT_ID_SCHEDULER}@${PROJECT_ID}.iam.gserviceaccount.com \
     --message-body-from-file config/cloud_function_params.json
 
