@@ -1,6 +1,6 @@
 <div align="center">
 
-# Pipelines Scheduler accelerator
+# Vertex Pipelines Scheduler Accelerator
 
 [![CI status](https://github.com/artefactory-fr/scheduled-pipelines/actions/workflows/ci.yaml/badge.svg)](https://github.com/artefactory-fr/scheduled-pipelines/actions/workflows/ci.yaml?query=branch%3Amain)
 [![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10-blue.svg)]()
@@ -18,7 +18,7 @@ It does for you the creation of the required service accounts, configure the req
 
 ## Table of Contents
 
-- [Pipelines Scheduler accelerator](#pipelines-scheduler-accelerator)
+- [Vertex Pipelines Scheduler Accelerator](#vertex-pipelines-scheduler-accelerator)
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
