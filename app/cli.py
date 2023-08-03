@@ -5,6 +5,7 @@ import os
 import typer
 from dotenv import load_dotenv
 from kfp.registry import RegistryClient
+from loguru import logger
 
 from config.config import ROOT_PATH
 
@@ -21,9 +22,13 @@ app = typer.Typer()
 def upload_compiled_pipeline(path_to_pipeline_template: str) -> None:
     """Upload the compiled pipeline (YAML file) to Artifact registry."""
     client = RegistryClient(host=f"https://{REGION}-kfp.pkg.dev/{PROJECT_ID}/{REPOSITORY_NAME}")
-    client.upload_pipeline(
+    package_name, _ = client.upload_pipeline(
         file_name=path_to_pipeline_template, tags=["latest"]
     )  # This function requires a str filename
+    logger.info(
+        f"Pipeline '{package_name}' successfully uploaded to "
+        f"{REGION}-kfp.pkg.dev/{PROJECT_ID}/{REPOSITORY_NAME}"
+    )
 
 
 if __name__ == "__main__":
