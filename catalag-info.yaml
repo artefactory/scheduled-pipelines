@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: scheduled-pipelines
+  title: Vertex pipelines Scheduler accelerator
+  description: >
+    A package to make seamless the scheduling of Vertex pipelines on GCP.
+  annotations:
+    github.com/project-slug: artefactory/scheduled-pipelines
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: service
+  owner: user:luca-serra
+  lifecycle: experimental
