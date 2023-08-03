@@ -94,4 +94,4 @@ Note: the required permissions required to execute these steps are:
 
 ## Documentation
 
-A detailed documentation of this project is available on Skaff.  TODO: add link
+A detailed documentation of this project is available on [Skaff](https://artefact.roadie.so/docs/default/Component/scheduled-pipelines).
