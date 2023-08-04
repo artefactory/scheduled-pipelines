@@ -1,8 +1,5 @@
-<div align="center">
-
 # Vertex Pipelines Scheduler Accelerator
 
-[![CI status](https://github.com/artefactory-fr/scheduled-pipelines/actions/workflows/ci.yaml/badge.svg)](https://github.com/artefactory-fr/scheduled-pipelines/actions/workflows/ci.yaml?query=branch%3Amain)
 [![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10-blue.svg)]()
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -21,20 +18,31 @@ It does for you the creation of the required service accounts, configure the req
 - [Vertex Pipelines Scheduler Accelerator](#vertex-pipelines-scheduler-accelerator)
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
+  - [Setup](#setup)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Documentation](#documentation)
 
 ## Prerequisites
 
-- Unix-like environment (Linux, macOS, WSL, etc.)
+- Unix-like environment (Linux, macOS, WSL, etc... Tested on MacOS Monterey, M1 chip)
 - Python 3.8+
 - Conda
 - Google Cloud SDK (tested for version 440.0.0)
 
+## Setup
+
+First, you need to setup authentication to Google Cloud (select the relevant Google account and project):
+
+```bash
+gcloud config set project <gcp_project_id>
+gcloud auth login
+gcloud auth application-default login
+```
+
 ## Installation
 
-To install the required packages in a virtual environment, run the following command:
+To install the package in a virtual environment, run the following command:
 
 ```bash
 make install
@@ -50,13 +58,12 @@ To use this repository, you need to:
    - Cloud Build API
    - Artifact Registry API
    - Cloud Storage API
-   - Vertex AI API
 
-3. Compile the desired Vertex pipeline in a YAML file (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
+2. Compile the desired Vertex pipeline in a YAML file (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
 
-4. Upload the YAML file to the Artifact Registry repository using the following command (you have to perform installation step first and activate the conda virtual environment):
+3. Upload the YAML file to the Artifact Registry repository using the following command (you have to perform installation step first and activate the conda virtual environment):
 
-```
+```bash
 upload_template <path_to_pipeline_yaml_file>
 ```
 
@@ -66,9 +73,10 @@ upload_template <path_to_pipeline_yaml_file>
 
 7. Run the following command to create the required service accounts and cloud resources:
 
-```
+```bash
 make cloud_setup
 ```
+
 This command will:
 
 1. Create the service accounts required to run the scheduled pipelines and schedule them.
@@ -94,4 +102,4 @@ Note: the required permissions required to execute these steps are:
 
 ## Documentation
 
-A detailed documentation of this project is available on [Skaff](https://artefact.roadie.so/docs/default/Component/scheduled-pipelines).
+This documentation is available on [Skaff](https://artefact.roadie.so/docs/default/Component/scheduled-pipelines).
