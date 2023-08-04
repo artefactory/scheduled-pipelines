@@ -70,7 +70,7 @@ make cloud_setup
 This command will:
 
 1. Create the service accounts required to run the scheduled pipelines and schedule them.
-2. Create the necessary cloud resources (Cloud Scheduler, Cloud Functions, Storage Bucket, Artifact Registry repository).
+2. Create the necessary cloud resources (Cloud Scheduler, Cloud Functions, Artifact Registry repository).
 3. Give the appropriate permissions to the service accounts.
 
 Note: the required permissions required to execute these steps are:
@@ -78,7 +78,6 @@ Note: the required permissions required to execute these steps are:
 | Resource creation        | Permission(s) required                                    |
 | ------------------------ | --------------------------------------------------------- |
 | Create service account   | iam.serviceAccounts.create                                |
-| Create bucket            | storage.buckets.create                                    |
 | Create artifact registry | artifactregistry.repositories.create                      |
 | Creation cloud function  | cloudfunctions.functions.create, cloudbuild.builds.create |
 | Create cloud scheduler   | cloudscheduler.jobs.create                                |

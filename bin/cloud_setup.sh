@@ -15,18 +15,13 @@ gcloud iam service-accounts create ${SERVICE_ACCOUNT_ID_SCHEDULER} \
     --project=${PROJECT_ID}
 
 # 2. Create cloud resources
-# 2.1. Create storage bucket for pipeline artifacts
-gcloud storage buckets create ${PIPELINE_ROOT_PATH} \
-    --project=${PROJECT_ID} \
-    --location=${REGION}
-
-# 2.2. Create artifact repository for pipeline templates
+# 2.1. Create artifact repository for pipeline templates
 gcloud artifacts repositories create ${REPOSITORY_NAME} \
     --repository-format=kfp \
     --location=${REGION} \
     --description="Artifact repository used to store Vertex pipelines templates"
 
-# 2.3. Create cloud function to run pipelines
+# 2.2. Create cloud function to run pipelines
 cd "cloud_function"
 gcloud functions deploy ${CLOUD_FUNCTION_NAME} \
     --region ${REGION} \
@@ -40,7 +35,7 @@ PIPELINE_ROOT_PATH=${PIPELINE_ROOT_PATH},SERVICE_ACCOUNT_ID_PIPELINE=${SERVICE_A
 REPOSITORY_NAME=${REPOSITORY_NAME}
 cd ..
 
-# 2.4. Create cloud scheduler to trigger cloud function
+# 2.3. Create cloud scheduler to trigger cloud function
 service_endpoint="${REGION}-aiplatform.googleapis.com"
 parent="projects/${PROJECT_ID}/locations/${REGION}"
 
