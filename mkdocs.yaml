@@ -1,4 +1,4 @@
-site_name: scheduled-pipelines
+site_name: Vertex Pipelines Scheduler Accelerator
 
 theme:
   name: "material"
@@ -26,5 +26,4 @@ plugins:
   - search
 
 nav:
-  - Home: index.md
-  - Source code: code.md
+  - User Guide: README.md
