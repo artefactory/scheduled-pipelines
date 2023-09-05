@@ -40,7 +40,7 @@ resource "google_cloudfunctions_function" "cloud_function" {
     runtime     = "python311"
     trigger_http          = true
     entry_point           = "run_vertex_pipeline"
-    available_memory_mb   = 128
+    available_memory_mb   = 256
     service_account_email = google_service_account.service_account_pipeline.email
     source_archive_bucket = google_storage_bucket.cloud_function_bucket.name
     source_archive_object = google_storage_bucket_object.cloud_function_code.name
