@@ -29,6 +29,3 @@ resource "google_cloudfunctions_function_iam_member" "call_cloud_function" {
     role = "roles/cloudfunctions.invoker"
     member = "serviceAccount:${google_service_account.service_account_scheduler.email}"
 }
-
-//https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloudfunctions_function.html#example-usage---public-function
-//https://stackoverflow.com/a/74944901/13891969

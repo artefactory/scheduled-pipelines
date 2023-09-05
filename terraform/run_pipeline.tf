@@ -6,7 +6,7 @@ resource "google_service_account" "service_account_pipeline" {
 
 resource "google_artifact_registry_repository" "pipeline_registry" {
     project = var.project_id
-    repository_id = "pipeline"
+    repository_id = var.repository_name
     location       = var.region
     format         = "KFP"
     description    = "Artifact registry used to store pipeline templates"
@@ -44,7 +44,12 @@ resource "google_cloudfunctions_function" "cloud_function" {
     service_account_email = google_service_account.service_account_pipeline.email
     source_archive_bucket = google_storage_bucket.cloud_function_bucket.name
     source_archive_object = google_storage_bucket_object.cloud_function_code.name
+    lifecycle {
+        replace_triggered_by = [ google_storage_bucket_object.cloud_function_code ]
+    }
     environment_variables = {
+        PROJECT_ID = var.project_id
+        REGION = var.region
         PIPELINE_ROOT_PATH = var.pipeline_root_path
         SERVICE_ACCOUNT_ID_PIPELINE = var.service_account_id_pipeline
         REPOSITORY_NAME = var.repository_name
@@ -64,11 +69,11 @@ resource "google_artifact_registry_repository_iam_member" "pipeline_registry_sto
     location       = var.region
     repository = google_artifact_registry_repository.pipeline_registry.name
     role       = "roles/artifactregistry.writer"
-    member     = "serviceAccount:${google_service_account.service_account_pipeline.account_id}@${var.project_id}.iam.gserviceaccount.com"
+    member     = "serviceAccount:${google_service_account.service_account_pipeline.email}"
 }
 
 resource "google_storage_bucket_iam_member" "pipeline_artifacts" {
     bucket = google_storage_bucket.pipeline_artifact_bucket.name
     role = "roles/storage.admin"
-    member = "serviceAccount:${google_service_account.service_account_pipeline.account_id}@${var.project_id}.iam.gserviceaccount.com"
+    member = "serviceAccount:${google_service_account.service_account_pipeline.email}"
 }
