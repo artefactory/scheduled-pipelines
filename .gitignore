@@ -133,3 +133,11 @@ dmypy.json
 # Secret files
 secrets/*
 !secrets/.env.template
+
+terraform/.terraform
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/.terraform.lock.hcl
+
+
+*.zip
