@@ -1,3 +1,5 @@
+#!/bin/bash -e
+
 set -e # Exit immediately if a command exits with a non-zero status.
 set -a # Mark variables which are modified or created for export.
 source secrets/.env
