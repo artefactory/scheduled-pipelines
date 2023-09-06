@@ -1,12 +1,12 @@
 variable "project_id" {
-  type      = string
+  type        = string
   description = "GCP project ID"
 }
 
 variable "region" {
   type        = string
   description = "GCP region"
-  default =  "europe-west1"
+  default     = "europe-west1"
 }
 
 variable "pipeline_root_path" {
@@ -38,5 +38,5 @@ variable "cloud_function_name" {
 variable "cron_schedule" {
   type        = string
   description = "Cron schedule for the Cloud Scheduler"
-  default = "0 0 * * *"
+  default     = "0 0 * * *"
 }
