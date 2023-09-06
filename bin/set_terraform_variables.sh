@@ -1,3 +1,5 @@
+#!/bin/bash -e
+
 export TF_VAR_project_id=$PROJECT_ID
 export TF_VAR_region=$REGION
 export TF_VAR_pipeline_root_path=$PIPELINE_ROOT_PATH
