@@ -15,10 +15,11 @@ It does for you the creation of the required service accounts, configure the req
 
 ## Prerequisites
 
-- Unix-like environment (Linux, macOS, WSL, etc... Tested on MacOS Monterey, M1 chip)
+- Unix-like environment (Linux, macOS, WSL, etc...**** Tested on MacOS Monterey, M1 chip)
 - Python 3.8+
 - Conda
-- Google Cloud SDK (tested for version 440.0.0)
+- Terraform (tested for version v1.5.6 on darwin_arm64)
+- Having a working Vertex pipeline
 
 ## Setup
 
@@ -32,7 +33,7 @@ gcloud auth application-default login
 
 ## Installation
 
-To install the package in a virtual environment, run the following command:
+To install the package in a conda virtual environment, run the following command:
 
 ```bash
 make install
@@ -48,28 +49,23 @@ To use this repository, you need to:
    - Cloud Build API
    - Artifact Registry API
    - Cloud Storage API
+   - Vertex AI API
 
-2. Compile the desired Vertex pipeline in a YAML file (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
+2. Compile the desired Vertex pipeline in a YAML file (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)) locally.
 
-3. Upload the YAML file to the Artifact Registry repository using the following command (you have to perform installation step first and activate the conda virtual environment):
+3. Create the file `secrets/.env` with the appropriate values for your project. You can use the file `secrets/.env.template` as an example.
 
-```bash
-upload_template <path_to_pipeline_yaml_file>
-```
+4. Replace the values in the file `config/cloud_function_params.json`. These values will be used to define the pipeline parameters and the pipeline to be scheduled (`pipeline_name`).
 
-5. Create the file `secrets/.env` with the appropriate values for your project. You can use the file `secrets/.env.template` as a template.
-
-6. Replace the values in the file `config/cloud_function_params.json`. These values will be used to define the pipeline parameters and the pipeline to be scheduled (`pipeline_name`).
-
-7. Run the following command to create the required service accounts and cloud resources:
+5. Run the following command to create the required service accounts and cloud resources:
 
 ```bash
-make cloud_setup
+make build_resources
 ```
 
 This command will:
 
-1. Create the service accounts required to run the scheduled pipelines and schedule them.
+1. Create the service accounts used to run the scheduled pipelines and schedule them.
 2. Create the necessary cloud resources (Cloud Scheduler, Cloud Functions, Artifact Registry repository).
 3. Give the appropriate permissions to the service accounts.
 
@@ -82,9 +78,15 @@ Note: the required permissions required to execute these steps are:
 | Creation cloud function  | cloudfunctions.functions.create, cloudbuild.builds.create |
 | Create cloud scheduler   | cloudscheduler.jobs.create                                |
 
-| Resource to give permission to (iam-policy-binding) | Permission required                        |
+| Resource to give permission on (iam-policy-binding) | Permission required                        |
 | ----------------- | ------------------------------------------ |
 | Project           | resourcemanager.projects.setIamPolicy      |
 | Cloud storage     | storage.buckets.setIamPolicy               |
 | Cloud function    | cloudfunctions.functions.setIamPolicy      |
 | Artifact registry | artifactregistry.repositories.setIamPolicy |
+
+6. Upload the YAML file to the Artifact Registry repository using the following command (you have to perform installation step first and activate the conda virtual environment):
+
+```bash
+upload_template <path_to_local_pipeline_yaml_file>
+```
