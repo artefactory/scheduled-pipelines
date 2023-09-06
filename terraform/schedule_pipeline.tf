@@ -1,12 +1,9 @@
 resource "google_service_account" "service_account_scheduler" {
-  project      = var.project_id
   account_id   = var.service_account_id_scheduler
   display_name = "Service Account used to scheduler Vertex pipeline"
 }
 
 resource "google_cloud_scheduler_job" "job" {
-  project          = var.project_id
-  region           = var.region
   name             = "schedule_pipeline"
   description      = "Schedule the pipeline"
   schedule         = var.cron_schedule
@@ -23,8 +20,6 @@ resource "google_cloud_scheduler_job" "job" {
 }
 
 resource "google_cloudfunctions_function_iam_member" "call_cloud_function" {
-  project        = var.project_id
-  region         = var.region
   cloud_function = google_cloudfunctions_function.cloud_function.name
   role           = "roles/cloudfunctions.invoker"
   member         = "serviceAccount:${google_service_account.service_account_scheduler.email}"
