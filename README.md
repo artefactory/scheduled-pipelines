@@ -57,6 +57,7 @@ To use this repository, you need to:
    - Cloud Build API
    - Artifact Registry API
    - Cloud Storage API
+   - Vertex AI API
 
 2. Compile the desired Vertex pipeline in a YAML file (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
 
