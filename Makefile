@@ -14,6 +14,11 @@ install_precommit:
 	@pre-commit install -t pre-commit
 	@pre-commit install -t pre-push
 
+# help: build_resources				- Build cloud resources with terraform
+.PHONY: build_resources
+build_resources:
+	@make zip_cloud_function && cd terraform && terraform init && terraform apply -auto-approve
+
 # help: deploy_docs				- Deploy documentation to GitHub Pages
 .PHONY: deploy_docs
 deploy_docs:
@@ -24,3 +29,9 @@ deploy_docs:
 .PHONY: cloud_setup
 cloud_setup:
 	@bash bin/cloud_setup.sh
+
+
+# help: zip_cloud_function 			- Zip cloud function source code, used for terraform deployment
+.PHONY: zip_cloud_function
+zip_cloud_function:
+	@cd cloud_function && zip cloud_function.zip main.py requirements.txt && mv cloud_function.zip ../terraform/cloud_function.zip
