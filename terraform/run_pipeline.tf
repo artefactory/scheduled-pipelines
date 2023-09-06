@@ -14,7 +14,7 @@ resource "google_artifact_registry_repository" "pipeline_registry" {
 
 resource "google_storage_bucket" "pipeline_artifact_bucket" {
     project       = var.project_id
-    name          = "pipeline_root_playground" // TODO: replace PIPELINE_ROOT_PATH without gs:// and use it here
+    name          = replace(var.pipeline_root_path, "gs://", "")
     location      = var.region
 }
 
@@ -28,7 +28,7 @@ resource "google_storage_bucket" "cloud_function_bucket" {
 
 resource "google_storage_bucket_object" "cloud_function_code" {
     bucket = google_storage_bucket.cloud_function_bucket.name
-    name   = "index.zip"
+    name   = "cloud_function_source_code.zip"
     source = "./cloud_function.zip"
 }
 
