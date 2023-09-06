@@ -28,6 +28,7 @@ It does for you the creation of the required service accounts, configure the req
 - Python 3.8+
 - Conda
 - Terraform (tested for version v1.5.6 on darwin_arm64)
+- Having a working Vertex pipeline
 
 ## Setup
 
