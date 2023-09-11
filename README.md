@@ -25,10 +25,10 @@ It does for you the creation of the required service accounts, configure the req
 ## Prerequisites
 
 - Unix-like environment (Linux, macOS, WSL, etc...**** Tested on MacOS Monterey, M1 chip)
-- Python 3.8+
+- Google SDK (gcloud)
 - Conda
 - Terraform (tested for version v1.5.6 on darwin_arm64)
-- Having a working Vertex pipeline
+- Having a working Vertex pipeline, ready to be compiled
 
 ## Setup
 
@@ -42,11 +42,7 @@ gcloud auth application-default login
 
 ## Installation
 
-To install the package in a conda virtual environment, run the following command:
-
-```bash
-make install
-```
+No particular install step is required to use this package.
 
 ## Usage
 
@@ -94,10 +90,10 @@ Note: the required permissions required to execute these steps are:
 | Cloud function    | cloudfunctions.functions.setIamPolicy      |
 | Artifact registry | artifactregistry.repositories.setIamPolicy |
 
-6. Upload the YAML file to the Artifact Registry repository using the following command (you have to perform installation step first and activate the conda virtual environment):
+1. Upload the YAML file to the Artifact Registry repository using the following command:
 
 ```bash
-upload_template <path_to_local_pipeline_yaml_file>
+make upload_template <path_to_local_pipeline_yaml_file>
 ```
 
 ## Documentation

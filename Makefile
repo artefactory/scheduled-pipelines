@@ -3,11 +3,6 @@
 help:
 	@grep "^# help\:" Makefile | grep -v grep | sed 's/\# help\: //' | sed 's/\# help\://'
 
-# help: install					- Create a conda virtual environment and install dependencies
-.PHONY: install
-install:
-	@bash bin/install.sh
-
 # help: install_precommit			- Install pre-commit hooks
 .PHONY: install_precommit
 install_precommit:
@@ -35,3 +30,8 @@ cloud_setup:
 .PHONY: zip_cloud_function
 zip_cloud_function:
 	@cd cloud_function && zip cloud_function.zip main.py requirements.txt && mv cloud_function.zip ../terraform/cloud_function.zip
+
+# help: upload_template				- Upload pipeline template to Artifact Registry
+.PHONY: upload_template
+upload_template:
+	@bash bin/upload_pipeline_template.sh

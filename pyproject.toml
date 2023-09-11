@@ -10,9 +10,6 @@ version = "0.0.1"
 readme = "README.md"
 requires-python = ">=3.8"
 
-[project.scripts]
-"upload_template" = "app.cli:app"
-
 [project.urls]
 "Homepage" = "https://github.com/artefactory-fr/scheduled-pipelines"
 "Documentation" = "https://artefactory-fr.github.io/scheduled-pipelines"
