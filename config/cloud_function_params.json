@@ -1,7 +1,0 @@
-{
-    "display_name": "hello-world-cloud-function-pipeline",
-    "pipeline_name": "hello-world-pipeline",
-    "parameter_values": {
-        "name": "Hola from Cloud Scheduler"
-    }
-}
