@@ -3,12 +3,6 @@
 help:
 	@grep "^# help\:" Makefile | grep -v grep | sed 's/\# help\: //' | sed 's/\# help\://'
 
-# help: install_precommit			- Install pre-commit hooks
-.PHONY: install_precommit
-install_precommit:
-	@pre-commit install -t pre-commit
-	@pre-commit install -t pre-push
-
 # help: build_resources				- Build cloud resources with terraform
 .PHONY: build_resources
 build_resources:
@@ -31,7 +25,7 @@ cloud_setup:
 zip_cloud_function:
 	@cd cloud_function && zip cloud_function.zip main.py requirements.txt && mv cloud_function.zip ../terraform/cloud_function.zip
 
-# help: upload_template				- Upload pipeline template to Artifact Registry
+# help: upload_template <path_to_yaml_file>	- Upload pipeline template to Artifact Registry
 .PHONY: upload_template
 upload_template:
-	@bash bin/upload_pipeline_template.sh
+	@bash bin/upload_pipeline_template.sh $(filter-out $@,$(MAKECMDGOALS))
