@@ -142,3 +142,5 @@ terraform/.terraform.lock.hcl
 
 *.zip
 .DS_Store
+
+config/config.yaml
