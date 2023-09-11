@@ -1,3 +1,8 @@
+resource "random_string" "random_suffix_bucket" {
+  length  = 4
+  numeric = false
+}
+
 resource "google_service_account" "service_account_pipeline" {
   account_id   = var.service_account_id_pipeline
   display_name = "Service Account used to run Vertex pipeline"
@@ -17,7 +22,7 @@ resource "google_storage_bucket" "pipeline_artifact_bucket" {
 
 // Cloud function
 resource "google_storage_bucket" "cloud_function_bucket" {
-  name     = "cloud_function_code_bucket"
+  name     = "cloud_function_code_bucket_${random_string.random_suffix_bucket.result}"
   location = var.region
 }
 
