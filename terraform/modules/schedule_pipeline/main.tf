@@ -7,7 +7,7 @@ resource "google_cloud_scheduler_job" "job" {
   http_target {
     http_method = "POST"
     uri         = var.pipeline.cloud_function_uri
-    body        = base64encode(var.pipeline.parameter_values)
+    body        = base64encode(var.pipeline.parameter_values) // TODO: add other params
     oidc_token {
       service_account_email = var.pipeline.service_account_email
     }

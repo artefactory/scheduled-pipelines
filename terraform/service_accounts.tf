@@ -3,7 +3,7 @@ resource "google_service_account" "service_account_scheduler" {
   display_name = "Service Account used to scheduler Vertex pipeline"
 }
 
-resource "google_cloudfunctions_function_iam_member" "call_cloud_function" {
+resource "google_cloudfunctions_function_iam_member" "call_cloud_function_from_scheduler" {
   cloud_function = google_cloudfunctions_function.cloud_function.name
   role           = "roles/cloudfunctions.invoker"
   member         = "serviceAccount:${google_service_account.service_account_scheduler.email}"

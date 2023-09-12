@@ -11,9 +11,3 @@ module "schedule_pipeline" {
     "parameter_values" : each.value["parameter_values"]
   }
 }
-
-resource "google_cloudfunctions_function_iam_member" "call_cloud_function_from_scheduler" {
-  cloud_function = google_cloudfunctions_function.cloud_function.name
-  role           = "roles/cloudfunctions.invoker"
-  member         = "serviceAccount:${google_service_account.service_account_scheduler.email}"
-}
