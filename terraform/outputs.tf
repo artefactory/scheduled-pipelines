@@ -1,7 +1,7 @@
 locals {
-  config_files = "nice" #yamldecode(file("../config/configd.yaml"))
+  config_files = yamldecode(file("../config/config.yaml"))
 }
 
 output "test" {
-  value = "yes"
+  value = local.config_files
 }

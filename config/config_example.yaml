@@ -6,7 +6,6 @@ pipeline_info:
   service_account_id_pipeline: "id_service_account_pipeline"
   service_account_id_scheduler: "id_service_account_scheduler"
   repository_name: "artifact_registry_repository_name"
-  cloud_function_name: "cloud_function_name"
 scheduled_pipelines:
   - scheduler:
       name: "scheduler_name_1"
