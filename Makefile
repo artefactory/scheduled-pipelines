@@ -23,3 +23,9 @@ zip_cloud_function:
 .PHONY: upload_template
 upload_template:
 	@bash bin/upload_pipeline_template.sh $(filter-out $@,$(MAKECMDGOALS))
+
+
+# help: build_config				- Build config file to schedule the pipelines
+.PHONY: build_config
+build_config:
+	@bash bin/build_config.sh

@@ -1,29 +1,27 @@
 project:
   id: "gcp-project-id"
   region: "europe-west1"
-pipeline_info:
-  pipeline_root_path: "gs://bucket_pipeline_root"
-  service_account_id_pipeline: "id_service_account_pipeline"
-  service_account_id_scheduler: "id_service_account_scheduler"
-  repository_name: "artifact_registry_repository_name"
+  pipeline_root_path: "gs://bucket-pipeline-root"
+  service_account_id_pipeline: "service-account-id-pipeline"
+  service_account_id_scheduler: "service-account-id-scheduler"
+  repository_name: "pipelines"
+
 scheduled_pipelines:
-  - scheduler:
-      name: "scheduler_name_1"
-      cron_schedule: "*/5 * * * *"
-    pipeline:
-      name: "pipeline_name_in_yaml_file_1"
-      display_name: "pipeline_name_in_ui_1"
-      parameter_values:
-        - key: "sentence"
-          value: "hi there"
-  - scheduler:
-      name: "scheduler_name_2"
-      cron_schedule: "*/12 * * * *"
-    pipeline:
-      name: "pipeline_name_in_yaml_file_2"
-      display_name: "pipeline_name_in_ui_2"
-      parameter_values:
-        - key: "var1"
-          value: "val1"
-        - key: "var2"
-          value: "val2"
+  pipeline_1:
+    cron_schedule: "*/6 * * * *"
+    scheduler_name: "scheduler_name_1"
+    pipeline_name: "hello-world-pipeline"
+    pipeline_display_name: "pipeline_name_in_ui_1"
+    parameter_values:
+      - key: "param1"
+        value: "val1"
+  pipeline_2:
+    cron_schedule: "*/7 * * * *"
+    scheduler_name: "scheduler_name_2"
+    pipeline_name: "hello-world-pipeline-2"
+    pipeline_display_name: "pipeline_name_in_ui_2"
+    parameter_values:
+      - key: "arg1"
+        value: "val1"
+      - key: "arg2"
+        value: "val2"
