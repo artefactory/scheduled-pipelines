@@ -6,19 +6,13 @@ help:
 # help: build_resources				- Build cloud resources with terraform
 .PHONY: build_resources
 build_resources:
-	@make zip_cloud_function && source bin/set_terraform_variables.sh && cd terraform && terraform init && terraform apply -auto-approve
+	@make zip_cloud_function && cd terraform && terraform init && terraform apply -auto-approve
 
 # help: deploy_docs				- Deploy documentation to GitHub Pages
 .PHONY: deploy_docs
 deploy_docs:
 	@mkdocs build
 	@mkdocs gh-deploy
-
-# help: cloud_setup				- Setup cloud environment (service accounts, roles and resources)
-.PHONY: cloud_setup
-cloud_setup:
-	@bash bin/cloud_setup.sh
-
 
 # help: zip_cloud_function 			- Zip cloud function source code, used for terraform deployment
 .PHONY: zip_cloud_function
