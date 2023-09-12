@@ -5,7 +5,7 @@ resource "random_string" "random_suffix_bucket" {
 
 resource "google_storage_bucket" "cloud_function_bucket" {
   name     = "cloud_function_code_bucket_${random_string.random_suffix_bucket.result}"
-  location = var.region
+  location = var.config_file.project.region
 }
 
 resource "google_storage_bucket_object" "cloud_function_code" {
@@ -28,10 +28,10 @@ resource "google_cloudfunctions_function" "cloud_function" {
     replace_triggered_by = [google_storage_bucket_object.cloud_function_code]
   }
   environment_variables = {
-    PROJECT_ID                  = var.project_id
-    REGION                      = var.region
-    PIPELINE_ROOT_PATH          = var.pipeline_root_path
-    SERVICE_ACCOUNT_ID_PIPELINE = var.service_account_id_pipeline
-    REPOSITORY_NAME             = var.repository_name
+    PROJECT_ID                  = var.config_file.project.id
+    REGION                      = var.config_file.project.region
+    PIPELINE_ROOT_PATH          = var.config_file.pipeline_info.pipeline_root_path
+    SERVICE_ACCOUNT_ID_PIPELINE = var.config_file.pipeline_info.service_account_id_pipeline
+    REPOSITORY_NAME             = var.config_file.pipeline_info.repository_name
   }
 }

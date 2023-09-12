@@ -1,7 +1,10 @@
 variable "scheduler" {
   type = object({
-    name          = string
-    cron_schedule = string
+    name                  = string
+    cron_schedule         = string
+    cloud_function_uri    = string
+    service_account_email = string
+    cloud_function_name   = string
   })
 }
 variable "pipeline" {

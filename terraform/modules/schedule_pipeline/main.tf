@@ -6,16 +6,16 @@ resource "google_cloud_scheduler_job" "job" {
   attempt_deadline = "320s"
   http_target {
     http_method = "POST"
-    uri         = google_cloudfunctions_function.cloud_function.https_trigger_url
-    body        = var.pipeline.parameter_values
+    uri         = var.scheduler.cloud_function_uri
+    # body        = var.pipeline.parameter_values # TODO
     oidc_token {
-      service_account_email = google_service_account.service_account_scheduler.email
+      service_account_email = var.scheduler.service_account_email
     }
   }
 }
 
 resource "google_cloudfunctions_function_iam_member" "call_cloud_function" {
-  cloud_function = google_cloudfunctions_function.cloud_function.name
+  cloud_function = var.scheduler.cloud_function_name
   role           = "roles/cloudfunctions.invoker"
-  member         = "serviceAccount:${google_service_account.service_account_scheduler.email}"
+  member         = "serviceAccount:${var.scheduler.service_account_email}"
 }
