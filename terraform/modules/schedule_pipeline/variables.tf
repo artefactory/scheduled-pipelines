@@ -6,6 +6,9 @@ variable "pipeline" {
     pipeline_display_name = string
     cloud_function_uri    = string
     service_account_email = string
-    parameter_values      = string
+    parameter_values = list(object({
+      key   = string
+      value = string
+    }))
   })
 }

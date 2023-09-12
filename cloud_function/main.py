@@ -25,7 +25,7 @@ def run_vertex_pipeline(request: flask.request) -> str:  # noqa: ARG001
     if request_json:
         for required_field in required_fields:
             if required_field not in request_json:
-                raise ValueError(f"JSON is invalid, or missing a '{required_field}' property")
+                raise ValueError(f"JSON request body is invalid, or missing a '{required_field}' property")
         display_name = request_json["display_name"]
         pipeline_name = request_json[
             "pipeline_name"
