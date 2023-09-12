@@ -2,6 +2,6 @@ locals {
   config_files = yamldecode(file("../config/config.yaml"))
 }
 
-output "test" {
+output "configuration" {
   value = local.config_files
 }
