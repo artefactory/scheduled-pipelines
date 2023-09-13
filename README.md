@@ -55,7 +55,17 @@ make help
 
 To use this repository, you need to:
 
-1. Enable the following APIs in your project:
+1. If not done already, compile the desired Vertex pipeline in a YAML file locally (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
+
+2. Execute the following command to create the configuration file `config/config.yaml`:
+
+```bash
+make build_config
+```
+
+3. Replace the values in the created configuration file  `config/config.yaml` with the values corresponding to your project.
+
+4. Enable the following APIs in your project:
    - Cloud Scheduler API
    - Cloud Functions API
    - Cloud Build API
@@ -63,15 +73,11 @@ To use this repository, you need to:
    - Cloud Storage API
    - Vertex AI API
 
-2. If not done already, compile the desired Vertex pipeline in a YAML file locally (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
-
-3. Execute the following command to create the configuration file `config/config.yaml`:
+You can do so by running the following command:
 
 ```bash
-make build_config
+make enable_services
 ```
-
-4. Replace the values in the created configuration file  `config/config.yaml` with the values corresponding to your project.
 
 5. Run the following command to create the required service accounts and cloud resources:
 
@@ -111,7 +117,7 @@ make upload_template <path_to_local_pipeline_yaml_file>
 ## Sanity check
 
 To check that everything is working as expected, you can go to the Cloud Scheduler page in the Google Cloud console and make sure the right schedulers are present.
-Then, you can trigger a force run of one of the scheduler and check that the pipeline is running as expected.
+Then, you can trigger a force run of one of the scheduler and check that the Vertex pipeline is running as expected.
 
 ## Documentation
 

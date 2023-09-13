@@ -20,6 +20,11 @@ deploy_docs:
 	@mkdocs build
 	@mkdocs gh-deploy
 
+# help: enable_services				- Enable required services (APIs)
+.PHONY: enable_services
+enable_services:
+	@bash bin/enable_services.sh
+
 # help: help					- Display this makefile's help information
 .PHONY: help
 help:
