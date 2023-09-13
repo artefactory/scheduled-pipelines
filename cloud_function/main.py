@@ -20,7 +20,7 @@ def run_vertex_pipeline(request: flask.request) -> str:  # noqa: ARG001
     request_str = request.data.decode("utf-8")
     request_json = json.loads(request_str)
     logger.info(f"Request from cloud scheduler: {request_json}")
-    required_fields = ["display_name", "pipeline_name", "parameter_values"]
+    required_fields = ["display_name", "pipeline_name", "parameter_values", "enable_caching"]
 
     if request_json:
         for required_field in required_fields:
@@ -32,8 +32,9 @@ def run_vertex_pipeline(request: flask.request) -> str:  # noqa: ARG001
         ]  # Note: This is the name written in the pipeline decorator when defining the pipeline
         # This is the value used to identify the YAML pipeline file in the Artifact registry
         parameter_values = request_json["parameter_values"]
+        enable_caching = request_json["enable_caching"]
     else:
-        raise ValueError("JSON is invalid/missing")
+        raise ValueError("JSON request body is invalid/missing")
 
     aiplatform.init(
         project=PROJECT_ID,
@@ -45,7 +46,7 @@ def run_vertex_pipeline(request: flask.request) -> str:  # noqa: ARG001
         template_path=f"https://{REGION}-kfp.pkg.dev/{PROJECT_ID}/{REPOSITORY_NAME}/{pipeline_name}/latest",
         pipeline_root=PIPELINE_ROOT_PATH,
         location=REGION,
-        enable_caching=False,
+        enable_caching=enable_caching,
         parameter_values=parameter_values,
     )
     job.submit(

@@ -9,17 +9,21 @@ project:
 scheduled_pipelines:
   pipeline_1:
     cron_schedule: "*/6 * * * *"
+    time_zone: "Europe/Paris"
     scheduler_name: "scheduler_name_1"
     pipeline_name: "hello-world-pipeline"
     pipeline_display_name: "pipeline_name_in_ui_1"
+    enable_caching: false
     parameter_values:
       - key: "param1"
         value: "val1"
   pipeline_2:
     cron_schedule: "*/7 * * * *"
+    time_zone: "Europe/Paris"
     scheduler_name: "scheduler_name_2"
     pipeline_name: "hello-world-pipeline-2"
     pipeline_display_name: "pipeline_name_in_ui_2"
+    enable_caching: false
     parameter_values:
       - key: "arg1"
         value: "val1"

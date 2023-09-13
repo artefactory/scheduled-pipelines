@@ -56,11 +56,15 @@ To use this repository, you need to:
    - Cloud Storage API
    - Vertex AI API
 
-2. Compile the desired Vertex pipeline in a YAML file (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)) locally.
+2. Compile the desired Vertex pipeline in a YAML file locally (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
 
-3. Create the file `secrets/.env` with the appropriate values for your project. You can use the file `secrets/.env.template` as an example.
+3. Execute the following command to create the configuration file `config/config.yaml`:
 
-4. Replace the values in the file `config/cloud_function_params.json`. These values will be used to define the pipeline parameters and the pipeline to be scheduled (`pipeline_name`).
+```bash
+make build_config
+```
+
+4. Replace the values in the created configuration file  `config/config.yaml` with the values corresponding to your project.
 
 5. Run the following command to create the required service accounts and cloud resources:
 
@@ -90,7 +94,8 @@ Note: the required permissions required to execute these steps are:
 | Cloud function    | cloudfunctions.functions.setIamPolicy      |
 | Artifact registry | artifactregistry.repositories.setIamPolicy |
 
-1. Upload the YAML file to the Artifact Registry repository using the following command:
+
+6. Upload the YAML file to the Artifact Registry repository using the following command:
 
 ```bash
 make upload_template <path_to_local_pipeline_yaml_file>

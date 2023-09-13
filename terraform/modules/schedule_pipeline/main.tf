@@ -6,17 +6,18 @@ locals {
       }
     },
     {
-      "pipeline_name" = var.pipeline.pipeline_name,
-      "display_name"  = var.pipeline.pipeline_display_name,
+      "pipeline_name"  = var.pipeline.pipeline_name,
+      "display_name"   = var.pipeline.pipeline_display_name,
+      "enable_caching" = var.pipeline.enable_caching
     }
   )
 }
 
-resource "google_cloud_scheduler_job" "job" {
+resource "google_cloud_scheduler_job" "pipeline_scheduler" {
   name             = var.pipeline.scheduler_name
   description      = "Schedule the pipeline"
   schedule         = var.pipeline.cron_schedule
-  time_zone        = "CET"
+  time_zone        = var.pipeline.time_zone
   attempt_deadline = "320s"
   http_target {
     http_method = "POST"
