@@ -20,6 +20,7 @@ It does for you the creation of the required service accounts, configure the req
   - [Setup](#setup)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Sanity check](#sanity-check)
   - [Documentation](#documentation)
 
 ## Prerequisites
@@ -56,7 +57,7 @@ To use this repository, you need to:
    - Cloud Storage API
    - Vertex AI API
 
-2. Compile the desired Vertex pipeline in a YAML file locally (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
+2. If not done already, compile the desired Vertex pipeline in a YAML file locally (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
 
 3. Execute the following command to create the configuration file `config/config.yaml`:
 
@@ -100,6 +101,11 @@ Note: the required permissions required to execute these steps are:
 ```bash
 make upload_template <path_to_local_pipeline_yaml_file>
 ```
+
+## Sanity check
+
+To check that everything is working as expected, you can go to the Cloud Scheduler page in the Google Cloud console and make sure the right schedulers are present.
+Then, you can trigger a force run of one of the scheduler and check that the pipeline is running as expected.
 
 ## Documentation
 
