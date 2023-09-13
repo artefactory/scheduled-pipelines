@@ -8,9 +8,11 @@
 [![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-informational?logo=pre-commit&logoColor=white)](https://github.com/artefactory-fr/scheduled-pipelines/blob/main/.pre-commit-config.yaml)
 
-This repository enables to easily upload existing Vertex pipelines templates to an Artifact Registry repository and to schedule them using Cloud Scheduler and Cloud Functions.
+This repository enables to easily schedule existing Vertex pipelines.
 
-It does for you the creation of the required service accounts, configure the required permissions and create the cloud resources.
+It uploads Vertex pipelines templates to an Artifact Registry repository and schedules pipelines using Cloud Scheduler and Cloud Functions.
+
+It does for you the creation of the required service accounts, configure the required permissions and create the necessary cloud resources.
 
 ## Table of Contents
 
@@ -113,6 +115,8 @@ Note: the required permissions required to execute these steps are:
 ```bash
 make upload_template <path_to_local_pipeline_yaml_file>
 ```
+
+Run this command as many times as you want to upload different pipelines.
 
 ## Sanity check
 

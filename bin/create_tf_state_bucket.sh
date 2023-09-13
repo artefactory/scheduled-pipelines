@@ -7,3 +7,6 @@ echo "Creating Terraform state bucket in project ${project_id} and region ${regi
 gcloud storage buckets create gs://${project_id}-tf-state \
     --project=${project_id} \
     --location=${region}
+
+
+sed -i '' "s/{PLACEHOLDER_FOR_SED}/$project_id/g" terraform/terraform.tf # Syntax for MacOS, see https://github.com/danielebailo/couchdb-dump/issues/35#issuecomment-148106536

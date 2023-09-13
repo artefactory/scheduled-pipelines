@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "${local.config_file.project.id}-tf-state"
+    bucket = "{PLACEHOLDER_FOR_SED}-tf-state"
     prefix = "terraform/state"
   }
   required_providers {
