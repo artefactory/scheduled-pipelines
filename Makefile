@@ -7,7 +7,7 @@ build_config:
 # help: build_resources				- Build cloud resources with terraform
 .PHONY: build_resources
 build_resources:
-	@make zip_cloud_function && cd terraform && terraform init && terraform apply -auto-approve
+	@make build_tf_state_bucket && make zip_cloud_function && cd terraform && terraform init && terraform apply -auto-approve
 
 # help: build_tf_state_bucket			- Build terraform state bucket
 .PHONY: build_tf_state_bucket
