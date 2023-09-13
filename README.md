@@ -47,6 +47,12 @@ No particular install step is required to use this package.
 
 ## Usage
 
+To list the available commands, run:
+
+```bash
+make help
+```
+
 To use this repository, you need to:
 
 1. Enable the following APIs in your project:
