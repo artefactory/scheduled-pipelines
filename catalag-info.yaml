@@ -7,7 +7,7 @@ metadata:
     A package to make seamless the scheduling of Vertex pipelines on GCP.
   labels:
     type: "accelerator"
-    type: "accelerator"
+    type: "k"
   annotations:
     github.com/project-slug: artefactory/scheduled-pipelines
     backstage.io/techdocs-ref: dir:.
