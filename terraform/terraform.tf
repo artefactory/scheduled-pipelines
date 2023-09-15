@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "{PLACEHOLDER_FOR_SED}-tf-state"
+    bucket = "{PLACEHOLDER_FOR_SED}-scheduled-pipelines-tf-state"
     prefix = "terraform/state"
   }
   required_providers {

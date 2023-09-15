@@ -4,7 +4,7 @@ region=$(grep 'region' config/scheduled_pipelines_config | sed -n 's/.*region: "
 project_id=$(grep 'id' config/scheduled_pipelines_config | sed -n 's/.*id: "\(.*\)"/\1/p')
 
 echo "Creating Terraform state bucket in project ${project_id} and region ${region}..."
-gcloud storage buckets create gs://${project_id}-tf-state \
+gcloud storage buckets create gs://${project_id}-scheduled-pipelines-tf-state \
     --project=${project_id} \
     --location=${region}
 

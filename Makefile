@@ -1,9 +1,3 @@
-# help: build_config				- Build config file to schedule the pipelines
-.PHONY: build_config
-build_config:
-	@bash bin/build_config.sh
-
-
 # help: build_resources				- Build cloud resources with terraform
 .PHONY: build_resources
 build_resources:
@@ -19,11 +13,6 @@ build_tf_state_bucket:
 deploy_docs:
 	@mkdocs build
 	@mkdocs gh-deploy
-
-# help: enable_services				- Enable required services (APIs)
-.PHONY: enable_services
-enable_services:
-	@bash bin/enable_services.sh
 
 # help: help					- Display this makefile's help information
 .PHONY: help

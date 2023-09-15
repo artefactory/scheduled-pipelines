@@ -1,18 +1,10 @@
 # Vertex Pipelines Scheduler Accelerator
 
-[![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10-blue.svg)]()
-
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
-[![Linting: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
-[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-informational?logo=pre-commit&logoColor=white)](https://github.com/artefactory-fr/scheduled-pipelines/blob/main/.pre-commit-scheduled_pipelines_config)
-
 This repository enables to easily schedule existing Vertex pipelines.
 
 It uploads Vertex pipelines templates to an Artifact Registry repository and schedules pipelines using Cloud Scheduler and Cloud Functions.
 
-It does for you the creation of the required service accounts, configure the required permissions and create the necessary cloud resources.
+It does for you the creation of the required service accounts, configures the required permissions and creates the necessary cloud resources.
 
 ## Table of Contents
 
@@ -22,15 +14,14 @@ It does for you the creation of the required service accounts, configure the req
   - [Setup](#setup)
   - [Usage](#usage)
   - [Sanity check](#sanity-check)
-  - [Documentation](#documentation)
+  - [More details](#more-details)
 
 ## Prerequisites
 
-- Unix-like environment (Linux, macOS, WSL, etc...**** Tested on MacOS Monterey, M1 chip)
-- Google SDK (gcloud)
-- Conda
-- Terraform (tested for version v1.5.6 on darwin_arm64)
-- Having a working Vertex pipeline, ready to be compiled
+- Unix-like environment (Linux, macOS, WSL, etc... Tested on MacOS Monterey, M1 chip)
+- Google SDK (gcloud) (instructions [here](https://cloud.google.com/sdk/docs/install#installation_instructions))
+- Terraform (tested for version v1.5.6 on darwin_arm64) (instructions [here](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform))
+- Having a compiled Vertex pipeline (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file))
 
 ## Setup
 
@@ -44,31 +35,30 @@ gcloud auth application-default login
 
 ## Usage
 
-To list the available commands, run:
-
-```bash
-make help
-```
-
 To use this repository, you need to:
 
-1. If not done already, compile the desired Vertex pipeline in a YAML file locally (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
-
-2. Initialize the scheduled pipelines config file:
+1. Initialize your own scheduled pipelines config file:
 
 ```bash
-make build_config
+cp config/scheduled_pipelines_config_example.yaml config/scheduled_pipelines_config.yaml
 ```
 
-3. Replace the values in the created configuration file  `config/scheduled_pipelines_config` with the values corresponding to your project.
+2. Replace the values in the created configuration file  `config/scheduled_pipelines_config.yaml` with the values corresponding to your project.
 
-4. Enable the required APIs by running the following command:
+3. Enable the required APIs:
 
 ```bash
-make enable_services
+gcloud services enable \
+    cloudscheduler.googleapis.com \
+    cloudfunctions.googleapis.com \
+    cloudbuild.googleapis.com \
+    artifactregistry.googleapis.com \
+    storage-component.googleapis.com \
+    aiplatform.googleapis.com \
+    --project=<GCP_PROJECT_ID>
 ```
 
-5. Run the following command to create the required service accounts and cloud resources:
+4. Create the required service accounts and cloud resources:
 
 ```bash
 make build_resources
@@ -76,11 +66,27 @@ make build_resources
 
 This command will:
 
-1. Create the service accounts used to run the scheduled pipelines and schedule them.
-2. Create the necessary cloud resources (Cloud Scheduler, Cloud Functions, Artifact Registry repository).
-3. Give the appropriate permissions to the service accounts.
+- Create the service accounts used to run the scheduled pipelines and schedule them.
+- Create the necessary cloud resources (Cloud Scheduler, Cloud Functions, Artifact Registry repository).
+- Give the appropriate permissions to the service accounts.
 
-Note: the required permissions required to execute these steps are:
+
+5. Upload the YAML file to the Artifact Registry repository:
+
+```bash
+make upload_template <path_to_local_pipeline_yaml_file>
+```
+
+Run this command as many times as you want to upload different pipelines.
+
+## Sanity check
+
+To check that everything is working as expected, you can go to the Cloud Scheduler page in the Google Cloud console and make sure the right schedulers are present.
+Then, you can trigger a force run of one of the scheduler and check that the Vertex pipeline is running as expected.
+
+## More details
+
+The required permissions required to execute the `make build_resources` command are:
 
 | Resource creation        | Permission(s) required                                    |
 | ------------------------ | --------------------------------------------------------- |
@@ -95,21 +101,3 @@ Note: the required permissions required to execute these steps are:
 | Cloud storage     | storage.buckets.setIamPolicy               |
 | Cloud function    | cloudfunctions.functions.setIamPolicy      |
 | Artifact registry | artifactregistry.repositories.setIamPolicy |
-
-
-6. Upload the YAML file to the Artifact Registry repository using the following command:
-
-```bash
-make upload_template <path_to_local_pipeline_yaml_file>
-```
-
-Run this command as many times as you want to upload different pipelines.
-
-## Sanity check
-
-To check that everything is working as expected, you can go to the Cloud Scheduler page in the Google Cloud console and make sure the right schedulers are present.
-Then, you can trigger a force run of one of the scheduler and check that the Vertex pipeline is running as expected.
-
-## Documentation
-
-This documentation is available on [Skaff](https://artefact.roadie.so/docs/default/Component/scheduled-pipelines).
