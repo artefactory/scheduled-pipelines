@@ -6,6 +6,7 @@ metadata:
   description: >
     A package to make seamless the scheduling of Vertex pipelines on GCP.
   labels:
+    type: "coucou"
     type: "accelerator"
   annotations:
     github.com/project-slug: artefactory/scheduled-pipelines
