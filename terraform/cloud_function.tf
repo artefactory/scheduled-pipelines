@@ -8,7 +8,7 @@ resource "random_string" "random_suffix_bucket" {
 
 resource "google_storage_bucket" "cloud_function_bucket" {
   name          = "cloud_function_code_bucket_${random_string.random_suffix_bucket.result}"
-  location      = local.config_file.project.region
+  location      = local.pipeline_config_file.project.region
   force_destroy = true
 }
 
@@ -19,7 +19,7 @@ resource "google_storage_bucket_object" "cloud_function_code" {
 }
 
 resource "google_cloudfunctions_function" "cloud_function" {
-  name                  = "cloud-function-vertex-pipeline"
+  name                  = "scheduled-vertex-pipeline-runner"
   description           = "Cloud function to trigger the pipeline"
   runtime               = "python311"
   trigger_http          = true
@@ -32,10 +32,10 @@ resource "google_cloudfunctions_function" "cloud_function" {
     replace_triggered_by = [google_storage_bucket_object.cloud_function_code]
   }
   environment_variables = {
-    PROJECT_ID                  = local.config_file.project.id
-    REGION                      = local.config_file.project.region
-    PIPELINE_ROOT_PATH          = local.config_file.project.pipeline_root_path
-    SERVICE_ACCOUNT_ID_PIPELINE = local.config_file.project.service_account_id_pipeline
-    REPOSITORY_NAME             = local.config_file.project.repository_name
+    PROJECT_ID                  = local.pipeline_config_file.project.id
+    REGION                      = local.pipeline_config_file.project.region
+    PIPELINE_ROOT_PATH          = local.pipeline_config_file.project.pipeline_root_path
+    SERVICE_ACCOUNT_ID_PIPELINE = local.pipeline_config_file.project.service_account_id_pipeline
+    REPOSITORY_NAME             = local.pipeline_config_file.project.repository_name
   }
 }

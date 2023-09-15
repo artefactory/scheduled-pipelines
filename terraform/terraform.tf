@@ -12,6 +12,6 @@ terraform {
 }
 
 provider "google" {
-  project = local.config_file.project.id
-  region  = local.config_file.project.region
+  project = local.pipeline_config_file.project.id
+  region  = local.pipeline_config_file.project.region
 }

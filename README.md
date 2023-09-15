@@ -20,7 +20,6 @@ It does for you the creation of the required service accounts, configure the req
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
-  - [Installation](#installation)
   - [Usage](#usage)
   - [Sanity check](#sanity-check)
   - [Documentation](#documentation)
@@ -43,10 +42,6 @@ gcloud auth login
 gcloud auth application-default login
 ```
 
-## Installation
-
-No particular install step is required to use this package.
-
 ## Usage
 
 To list the available commands, run:
@@ -67,15 +62,7 @@ make build_config
 
 3. Replace the values in the created configuration file  `config/config.yaml` with the values corresponding to your project.
 
-4. Enable the following APIs in your project:
-   - Cloud Scheduler API
-   - Cloud Functions API
-   - Cloud Build API
-   - Artifact Registry API
-   - Cloud Storage API
-   - Vertex AI API
-
-You can do so by running the following command:
+4. Enable the required APIs by running the following command:
 
 ```bash
 make enable_services

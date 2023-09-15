@@ -1,7 +1,3 @@
-locals {
-  config_files = yamldecode(file("../config/config.yaml"))
-}
-
-output "configuration" {
-  value = local.config_files
+output "configuration_file" {
+  value = local.pipeline_config_file
 }
