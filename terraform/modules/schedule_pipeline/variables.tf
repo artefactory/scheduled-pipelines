@@ -10,13 +10,20 @@ variable "pipeline" {
       key   = string
       value = string
     }))
-    retry_config = object({
-      min_backoff_duration = optional(string, "5s")
-      max_backoff_duration = optional(string, "1h")
-      max_retry_duration   = optional(string, "0s")
-      max_doublings        = optional(number, 5)
-      retry_count          = optional(number, 0)
-    })
+    retry_config = optional(object({
+      min_backoff_duration = string
+      max_backoff_duration = string
+      max_retry_duration   = string
+      max_doublings        = number
+      retry_count          = number
+      }), {
+      min_backoff_duration = "5s"
+      max_backoff_duration = "3600s"
+      max_retry_duration   = "0s"
+      max_doublings        = 5
+      retry_count          = 0
+      }
+    )
     attempt_deadline = optional(string, "320s")
   })
 }
