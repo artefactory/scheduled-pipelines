@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-project_id=$(grep 'id' config/config.yaml | sed -n 's/.*id: "\(.*\)"/\1/p')
+project_id=$(grep 'id' config/scheduled_pipelines_config | sed -n 's/.*id: "\(.*\)"/\1/p')
 
 echo "Enabling services in project ${project_id}..."
 

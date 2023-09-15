@@ -6,7 +6,7 @@
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![Linting: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
-[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-informational?logo=pre-commit&logoColor=white)](https://github.com/artefactory-fr/scheduled-pipelines/blob/main/.pre-commit-config.yaml)
+[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-informational?logo=pre-commit&logoColor=white)](https://github.com/artefactory-fr/scheduled-pipelines/blob/main/.pre-commit-scheduled_pipelines_config)
 
 This repository enables to easily schedule existing Vertex pipelines.
 
@@ -54,13 +54,13 @@ To use this repository, you need to:
 
 1. If not done already, compile the desired Vertex pipeline in a YAML file locally (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)).
 
-2. Execute the following command to create the configuration file `config/config.yaml`:
+2. Initialize the scheduled pipelines config file:
 
 ```bash
 make build_config
 ```
 
-3. Replace the values in the created configuration file  `config/config.yaml` with the values corresponding to your project.
+3. Replace the values in the created configuration file  `config/scheduled_pipelines_config` with the values corresponding to your project.
 
 4. Enable the required APIs by running the following command:
 

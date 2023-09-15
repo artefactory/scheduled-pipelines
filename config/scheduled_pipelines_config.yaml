@@ -1,0 +1,29 @@
+project:
+  id: "ls-playground-tftest-1bfd"
+  region: "europe-west1"
+  pipeline_root_path: "gs://pipeline_root_playgr"
+  service_account_id_pipeline: "pipeline-runne"
+  service_account_id_scheduler: "cloud-schedule"
+  repository_name: "pipeline"
+
+scheduled_pipelines:
+  pipeline_1:
+    cron_schedule: "*/6 * * * *"
+    time_zone: "Europe/Paris"
+    scheduler_name: "scheduler_name_1"
+    pipeline_name: "hello-world-pipeline"
+    pipeline_display_name: "pipeline_name_in_ui_1"
+    enable_caching: false
+    parameter_values:
+      - key: "name"
+        value: "heyyyy"
+  pipeline_2:
+    cron_schedule: "*/6 * * * *"
+    time_zone: "Europe/Paris"
+    scheduler_name: "scheduler_name_2"
+    pipeline_name: "hello-luca-pipeline"
+    pipeline_display_name: "pipeline_name_in_ui_2"
+    enable_caching: true
+    parameter_values:
+      - key: "name"
+        value: "yoooo"
