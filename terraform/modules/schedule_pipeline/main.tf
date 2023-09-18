@@ -1,9 +1,7 @@
 locals {
   http_body_raw = merge(
     {
-      "parameter_values" = {
-        for param in var.pipeline.parameter_values : param.key => param.value
-      }
+      "parameter_values" = var.pipeline.parameter_values
     },
     {
       "pipeline_name"  = var.pipeline.pipeline_name,

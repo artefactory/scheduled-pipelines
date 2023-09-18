@@ -6,10 +6,7 @@ variable "pipeline" {
     pipeline_name         = string
     pipeline_display_name = string
     enable_caching        = bool
-    parameter_values = list(object({
-      key   = string
-      value = string
-    }))
+    parameter_values      = map(string)
     retry_config = optional(object({
       min_backoff_duration = string
       max_backoff_duration = string
