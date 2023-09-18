@@ -1,3 +1,3 @@
 locals {
-  pipeline_config_file = yamldecode(file("../config/scheduled_pipelines_config"))
+  pipeline_config_file = yamldecode(file("../config/scheduled_pipelines_config.yaml"))
 }
