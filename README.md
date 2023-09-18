@@ -4,6 +4,8 @@ This repository enables to easily schedule existing Vertex pipelines.
 
 It uploads Vertex pipelines templates to an Artifact Registry repository and schedules pipelines using Cloud Scheduler and Cloud Functions.
 
+<img src="assets/infra.png">
+
 It does for you the creation of the required service accounts, configures the required permissions and creates the necessary cloud resources.
 
 ## Table of Contents
@@ -22,6 +24,8 @@ It does for you the creation of the required service accounts, configures the re
 - Google SDK (gcloud) (instructions [here](https://cloud.google.com/sdk/docs/install#installation_instructions))
 - Terraform (tested for version v1.5.6 on darwin_arm64) (instructions [here](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform))
 - Having a compiled Vertex pipeline (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file))
+
+> Note: if you don't have a compiled pipeline or have trouble compiling it, you can use the [`hello_world_pipeline.yaml`](examples/hello_world_pipeline.yaml) file to test the scheduling.
 
 ## Setup
 
@@ -79,10 +83,17 @@ make upload_template <path_to_local_pipeline_yaml_file>
 
 Run this command as many times as you want to upload different pipelines.
 
+> Note: you can use the dummy pipeline to test the scheduling: `make upload_template examples/hello_world_pipeline.yaml`
+
+
 ## Sanity check
 
 To check that everything is working as expected, you can go to the Cloud Scheduler page in the Google Cloud console and make sure the right schedulers are present.
 Then, you can trigger a force run of one of the scheduler and check that the Vertex pipeline is running as expected.
+
+<img src="assets/cloud_schedulers.png" alt="Cloud schedulers" />
+
+> Note: you can click on "View logs" to debug the job if needed.
 
 ## More details
 
