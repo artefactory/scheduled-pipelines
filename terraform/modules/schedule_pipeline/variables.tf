@@ -1,12 +1,10 @@
 variable "pipeline" {
   type = object({
-    cron_schedule         = string
-    time_zone             = string
-    scheduler_name        = string
-    pipeline_name         = string
-    pipeline_display_name = string
-    enable_caching        = bool
-    parameter_values      = map(string)
+    pipeline_name    = string
+    cron_schedule    = string
+    time_zone        = string
+    enable_caching   = bool
+    parameter_values = map(string)
     retry_config = optional(object({
       min_backoff_duration = string
       max_backoff_duration = string
