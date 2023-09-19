@@ -44,7 +44,7 @@ def run_vertex_pipeline(request: flask.request) -> str:  # noqa: ARG001
     job = aiplatform.PipelineJob(
         display_name=display_name,
         template_path=f"https://{REGION}-kfp.pkg.dev/{PROJECT_ID}/{REPOSITORY_NAME}/{pipeline_name}/latest",
-        pipeline_root=PIPELINE_ROOT_PATH,
+        pipeline_root=f"{PIPELINE_ROOT_PATH}/{pipeline_name}",
         location=REGION,
         enable_caching=enable_caching,
         parameter_values=parameter_values,
