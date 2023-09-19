@@ -14,6 +14,7 @@ It does for you the creation of the required service accounts, configures the re
   - [Table of Contents](#table-of-contents)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
+  - [Installation](#installation)
   - [Usage](#usage)
   - [Sanity check](#sanity-check)
   - [More details](#more-details)
@@ -35,6 +36,23 @@ First, you need to setup authentication to Google Cloud (select the relevant Goo
 gcloud config set project <gcp_project_id>
 gcloud auth login
 gcloud auth application-default login
+```
+
+## Installation
+
+If not done already, download this repository on your local machine:
+
+```bash
+wget -O scheduled-pipelines.zip https://github.com/artefactory/scheduled-pipelines/archive/main.zip
+```
+
+Then unzip it:
+
+```bash
+unzip scheduled-pipelines.zip \
+&& rm scheduled-pipelines.zip \
+&& mv scheduled-pipelines-main scheduled-pipelines \
+&& cd scheduled-pipelines
 ```
 
 ## Usage

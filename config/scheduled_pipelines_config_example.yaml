@@ -8,6 +8,7 @@ project:
 
 scheduled_pipelines:
   pipeline_name_1: # The name of the pipeline (inside the compiled pipeline YAML file, value of `pipelineInfo.name`)
+    # If you want to use the dummy pipeline of this repository, replace "pipeline_name_1" with "hello-world-pipeline"
     cron_schedule: "*/6 * * * *"
     time_zone: "Europe/Paris"
     enable_caching: false
