@@ -34,7 +34,7 @@ resource "google_cloudfunctions_function" "cloud_function" {
   environment_variables = {
     PROJECT_ID                  = local.pipeline_config_file.project.id
     REGION                      = local.pipeline_config_file.project.region
-    PIPELINE_ROOT_PATH          = local.pipeline_config_file.project.pipeline_root_path
+    PIPELINE_ROOT_PATH          = local.pipeline_root_path
     SERVICE_ACCOUNT_ID_PIPELINE = local.pipeline_config_file.project.service_account_id_pipeline
     REPOSITORY_NAME             = local.pipeline_config_file.project.repository_name
   }
