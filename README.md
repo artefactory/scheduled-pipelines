@@ -47,7 +47,7 @@ To use this repository, you need to:
 cp config/scheduled_pipelines_config_example.yaml config/scheduled_pipelines_config.yaml
 ```
 
-2. Replace the values in the created configuration file  `config/scheduled_pipelines_config.yaml` with the values corresponding to your project.
+2. **Replace the values** in the created configuration file  [`config/scheduled_pipelines_config.yaml`](config/scheduled_pipelines_config.yaml) with the values **corresponding to your project**.
 
 3. Enable the required APIs:
 

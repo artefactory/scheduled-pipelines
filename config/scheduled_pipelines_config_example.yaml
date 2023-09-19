@@ -2,19 +2,19 @@ project:
   id: "gcp-project-id"
   region: "europe-west1"
   pipeline_root_path: "gs://bucket-pipeline-root"
-  service_account_id_pipeline: "service-account-id-pipeline"
-  service_account_id_scheduler: "service-account-id-scheduler"
-  repository_name: "pipelines"
+  service_account_id_pipeline: "service-account-id-pipeline" # SA which used by the cloud function to run the pipelines
+  service_account_id_scheduler: "service-account-id-scheduler" # SA which used by the scheduler
+  repository_name: "pipelines" # Artifact Registry repository name, where the pipeline YAML files are stored
 
 scheduled_pipelines:
   pipeline_1:
     cron_schedule: "*/6 * * * *"
     time_zone: "Europe/Paris"
     scheduler_name: "scheduler_name_1"
-    pipeline_name: "hello-world-pipeline"
+    pipeline_name: "hello-world-pipeline" # The name of the pipeline inside the YAML file, value of `pipelineInfo.name`
     pipeline_display_name: "pipeline_name_in_ui_1"
     enable_caching: false
-    parameter_values:
+    parameter_values: # The values of the pipeline input parameters
       param1: "val1"
   pipeline_2:
     cron_schedule: "*/7 * * * *"
