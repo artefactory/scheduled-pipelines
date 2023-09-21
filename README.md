@@ -24,6 +24,7 @@ It does for you the creation of the required service accounts, configures the re
 - Unix-like environment (Linux, macOS, WSL, etc... Tested on MacOS Monterey, M1 chip)
 - Google SDK (gcloud) (instructions [here](https://cloud.google.com/sdk/docs/install#installation_instructions))
 - Terraform (tested for version v1.5.6 on darwin_arm64) (instructions [here](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform))
+- Having `wget` installed (instructions [here](https://www.gnu.org/software/wget/) for Linux and for MacOS: `brew install wget`)
 - Having a compiled Vertex pipeline (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file))
 
 > Note: if you don't have a compiled pipeline or have trouble compiling it, you can use the [`hello_world_pipeline.yaml`](examples/hello_world_pipeline.yaml) file to test the scheduling.
@@ -62,7 +63,8 @@ To use this repository, you need to:
 1. Initialize your own scheduled pipelines config file:
 
 ```bash
-cp config/scheduled_pipelines_config_example.yaml config/scheduled_pipelines_config.yaml
+cp config/scheduled_pipelines_config_example.yaml config/scheduled_pipelines_config.yaml \
+&& rm config/scheduled_pipelines_config_example.yaml
 ```
 
 2. **Replace the values** in the created configuration file  [`config/scheduled_pipelines_config.yaml`](config/scheduled_pipelines_config.yaml) with the values **corresponding to your project**.
