@@ -1,4 +1,5 @@
 project:
+  # Note: The following project values must be double quoted
   id: "gcp-project-id"
   region: "europe-west1"
   staging_bucket_suffix: "pipeline-runs" # The URI of the bucket will be: gs://<gcp-project-id>-<staging_bucket_suffix>
@@ -7,17 +8,17 @@ project:
   repository_name: "pipelines" # Artifact Registry repository name, where the pipeline YAML files are stored
 
 scheduled_pipelines:
-  pipeline_name_1: # The name of the pipeline (inside the compiled pipeline YAML file, value of `pipelineInfo.name`)
-    # If you want to use the dummy pipeline of this repository, replace "pipeline_name_1" with "hello-world-pipeline"
+  pipeline_name_1: # <-- The name of the pipeline (inside the compiled pipeline YAML file, value of `pipelineInfo.name`)
     cron_schedule: "*/6 * * * *"
     time_zone: "Europe/Paris"
     enable_caching: false
-    parameter_values: # The values of the pipeline input parameters
+    parameter_values: # <-- The values of the pipeline input parameters
       param1: "val1"
-  pipeline_name_2:
-    cron_schedule: "*/7 * * * *"
-    time_zone: "Europe/Paris"
-    enable_caching: false
-    parameter_values:
-      arg1: "val1"
-      arg2: "val2"
+      param2: "val2"
+  # If you want to use the dummy pipeline of this repository, delete the preceding block and uncomment the following block:
+  # hello-world-pipeline:
+  #   cron_schedule: "*/7 * * * *"
+  #   time_zone: "Europe/Paris"
+  #   enable_caching: false
+  #   parameter_values:
+  #     name: "John Doe"
