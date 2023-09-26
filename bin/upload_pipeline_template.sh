@@ -2,9 +2,9 @@
 
 path_to_pipeline_template=$1
 
-region=$(grep 'region' config/scheduled_pipelines_config.yaml | sed -n 's/.*region: "\([^"#]*\).*/\1/p')
-project_id=$(grep 'id' config/scheduled_pipelines_config.yaml | sed -n 's/.*id: "\([^"#]*\).*/\1/p')
-repository_name=$(grep 'repository_name' config/scheduled_pipelines_config.yaml | sed -n 's/.*repository_name: "\([^"#]*\).*/\1/p')
+region=$(grep 'region' config/scheduled_pipelines_config.yaml | sed -n 's/.*region:[^a-zA-Z0-9-]*\([a-zA-Z0-9-]*\).*/\1/p')
+project_id=$(grep 'id' config/scheduled_pipelines_config.yaml | sed -n 's/.*id:[^a-zA-Z0-9-]*\([a-zA-Z0-9-]*\).*/\1/p')
+repository_name=$(grep 'repository_name' config/scheduled_pipelines_config.yaml | sed -n 's/.*repository_name:[^a-zA-Z0-9-]*\([a-zA-Z0-9-]*\).*/\1/p')
 
 echo "Uploading pipeline template to Artifact Registry (${region}-kfp.pkg.dev/${project_id}/${repository_name})..."
 

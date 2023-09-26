@@ -1,5 +1,4 @@
 project:
-  # Note: The following project values must be double quoted
   id: "gcp-project-id"
   region: "europe-west1"
   staging_bucket_suffix: "pipeline-runs" # The URI of the bucket will be: gs://<gcp-project-id>-<staging_bucket_suffix>
