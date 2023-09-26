@@ -15,4 +15,4 @@ else
     echo "Terraform state bucket already exists in project ${project_id} and region ${region}..."
 fi
 
-cat terraform/terraform.tf | BUCKET_PREFIX=$project_id envsubst | tee terraform/terraform.tf 1>/dev/null
+cat terraform/terraform.tf | BUCKET_PREFIX=$project_id envsubst > temp.tf && mv temp.tf terraform/terraform.tf
