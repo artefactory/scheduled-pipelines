@@ -34,7 +34,8 @@ It does for you the creation of the required service accounts, configures the re
 First, you need to setup authentication to Google Cloud (select the relevant Google account and project):
 
 ```bash
-gcloud config set project <gcp_project_id>
+export GCP_PROJECT_ID=<gcp_project_id>
+gcloud config set project $GCP_PROJECT_ID
 gcloud auth login
 gcloud auth application-default login
 ```
@@ -79,7 +80,7 @@ gcloud services enable \
     artifactregistry.googleapis.com \
     storage-component.googleapis.com \
     aiplatform.googleapis.com \
-    --project=<GCP_PROJECT_ID>
+    --project=$GCP_PROJECT_ID
 ```
 
 4. Create the required service accounts and cloud resources:
