@@ -83,10 +83,10 @@ gcloud services enable \
   --project=$GCP_PROJECT_ID
 ```
 
-4. Deploy the scheduled pipeline and its infrastructure:
+4. Create a directory with the compiled pipeline(s) inside & deploy the scheduled pipeline(s) and its (their) infrastructure:
 
 ```bash
-make deploy_scheduled_pipeline <path_to_local_pipeline_yaml_file>
+make deploy_scheduled_pipeline <path_to_pipeline_templates_directory>
 ```
 
 This command will:
@@ -96,11 +96,9 @@ This command will:
 - Give the appropriate permissions to the service accounts.
 - Upload the pipeline templates to the Artifact Registry repository.
 
-Run this command as many times as you want to upload different pipelines.
-
 > Note: you can use the dummy pipeline to test the scheduling:
 ```bash
-make deploy_scheduled_pipeline examples/hello_world_pipeline.yaml
+make deploy_scheduled_pipeline examples
 ```
 
 ## Sanity check
