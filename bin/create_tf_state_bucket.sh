@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
-region=$(grep 'region' scheduled_pipelines_config.yaml | sed -n 's/.*region: "\(.*\)"/\1/p')
-project_id=$(grep 'id' scheduled_pipelines_config.yaml | sed -n 's/.*id: "\(.*\)"/\1/p')
+region=$(grep 'region' scheduled_pipelines_config.yaml | sed -n 's/.*region:[^a-zA-Z0-9-]*\([a-zA-Z0-9-]*\).*/\1/p')
+project_id=$(grep 'id' scheduled_pipelines_config.yaml | sed -n 's/.*id:[^a-zA-Z0-9-]*\([a-zA-Z0-9-]*\).*/\1/p')
 
 echo "Creating Terraform state bucket in project ${project_id} and region ${region}..."
 gcloud storage buckets create gs://${project_id}-scheduled-pipelines-tf-state \
