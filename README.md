@@ -17,6 +17,7 @@ It does for you the creation of the required service accounts, configures the re
   - [Installation](#installation)
   - [Usage](#usage)
   - [Sanity check](#sanity-check)
+  - [Troubleshooting](#troubleshooting)
   - [More details](#more-details)
 
 ## Prerequisites
@@ -64,8 +65,7 @@ To use this repository, you need to:
 1. Initialize your own scheduled pipelines config file:
 
 ```bash
-cp scheduled_pipelines_config_example.yaml scheduled_pipelines_config.yaml \
-&& rm scheduled_pipelines_config_example.yaml
+mv scheduled_pipelines_config_example.yaml scheduled_pipelines_config.yaml
 ```
 
 2. **Replace the values** in the created configuration file  [`scheduled_pipelines_config.yaml`](scheduled_pipelines_config.yaml) with the values **corresponding to your project**.
@@ -106,11 +106,21 @@ make deploy_scheduled_pipeline examples/hello_world_pipeline.yaml
 ## Sanity check
 
 To check that everything is working as expected, you can go to the Cloud Scheduler page in the Google Cloud console and make sure the right schedulers are present.
-Then, you can trigger a force run of one of the scheduler and check that the Vertex pipeline is running as expected.
+Then, you can trigger a force run of one of the scheduler and check that the Vertex pipeline is running as expected (go to Vertex AI > Pipelines and select the right region).
 
 <img src="assets/cloud_schedulers.png" alt="Cloud schedulers" />
 
-> Note: you can click on "View logs" to debug the job if needed.
+> Note: It might take a few minutes for the scheduler to work properly with the cloud function.
+
+## Troubleshooting
+
+1. Check that the "Status of last execution" of the scheduler is "Success". If this is not the case:
+
+First check the logs of the cloud scheduler to see whether the error is coming from the scheduler (permission denied) or the cloud function (internal error).
+
+If the error is a permission denied, check that the service account of the cloud scheduler has the right permissions on the cloud function. If the error is an internal error, check the cloud function logs (Go to the Cloud functions page, click on the cloud function name and go to the "LOGS" tab).
+
+2. If the "Status of last execution" is "Success", check that the Vertex pipeline is running as expected (make sure you selected the right region). If this is not the case, check the logs of the cloud function.
 
 ## More details
 
