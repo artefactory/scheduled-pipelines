@@ -1,5 +1,5 @@
 resource "google_service_account" "service_account_scheduler" {
-  account_id   = local.pipeline_config_file.project.service_account_id_scheduler
+  account_id   = local.pipeline_config_file.project.scheduler_service_account_name
   display_name = "Used by cloud scheduler to call cloud function"
 }
 
@@ -10,7 +10,7 @@ resource "google_cloudfunctions_function_iam_member" "call_cloud_function_from_s
 }
 
 resource "google_service_account" "service_account_pipeline" {
-  account_id   = local.pipeline_config_file.project.service_account_id_pipeline
+  account_id   = local.pipeline_config_file.project.pipeline_service_account_name
   display_name = "Used by cloud function to run a Vertex Pipeline"
 }
 
