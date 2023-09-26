@@ -74,19 +74,19 @@ cp scheduled_pipelines_config_example.yaml scheduled_pipelines_config.yaml \
 
 ```bash
 gcloud services enable \
-    cloudscheduler.googleapis.com \
-    cloudfunctions.googleapis.com \
-    cloudbuild.googleapis.com \
-    artifactregistry.googleapis.com \
-    storage-component.googleapis.com \
-    aiplatform.googleapis.com \
-    --project=$GCP_PROJECT_ID
+  cloudscheduler.googleapis.com \
+  cloudfunctions.googleapis.com \
+  cloudbuild.googleapis.com \
+  artifactregistry.googleapis.com \
+  storage-component.googleapis.com \
+  aiplatform.googleapis.com \
+  --project=$GCP_PROJECT_ID
 ```
 
-4. Create the required service accounts and cloud resources:
+4. Deploy the scheduled pipeline and its infrastructure:
 
 ```bash
-make build_resources
+make deploy_scheduled_pipeline <path_to_local_pipeline_yaml_file>
 ```
 
 This command will:
@@ -94,18 +94,14 @@ This command will:
 - Create the service accounts used to run the scheduled pipelines and schedule them.
 - Create the necessary cloud resources (Cloud Scheduler, Cloud Functions, Artifact Registry repository).
 - Give the appropriate permissions to the service accounts.
-
-
-5. Upload the YAML file to the Artifact Registry repository:
-
-```bash
-make upload_template <path_to_local_pipeline_yaml_file>
-```
+- Upload the pipeline templates to the Artifact Registry repository.
 
 Run this command as many times as you want to upload different pipelines.
 
-> Note: you can use the dummy pipeline to test the scheduling: `make upload_template examples/hello_world_pipeline.yaml`
-
+> Note: you can use the dummy pipeline to test the scheduling:
+```bash
+make deploy_scheduled_pipeline examples/hello_world_pipeline.yaml
+```
 
 ## Sanity check
 
@@ -118,7 +114,7 @@ Then, you can trigger a force run of one of the scheduler and check that the Ver
 
 ## More details
 
-The required permissions required to execute the `make build_resources` command are:
+The required permissions required to execute the `make deploy_scheduled_pipeline` command are:
 
 | Resource creation        | Permission(s) required                                    |
 | ------------------------ | --------------------------------------------------------- |
