@@ -64,11 +64,11 @@ To use this repository, you need to:
 1. Initialize your own scheduled pipelines config file:
 
 ```bash
-cp config/scheduled_pipelines_config_example.yaml config/scheduled_pipelines_config.yaml \
-&& rm config/scheduled_pipelines_config_example.yaml
+cp scheduled_pipelines_config_example.yaml scheduled_pipelines_config.yaml \
+&& rm scheduled_pipelines_config_example.yaml
 ```
 
-2. **Replace the values** in the created configuration file  [`config/scheduled_pipelines_config.yaml`](config/scheduled_pipelines_config.yaml) with the values **corresponding to your project**.
+2. **Replace the values** in the created configuration file  [`scheduled_pipelines_config.yaml`](scheduled_pipelines_config.yaml) with the values **corresponding to your project**.
 
 3. Enable the required APIs:
 

@@ -142,4 +142,4 @@ terraform/terraform.tfstate.backup
 *.zip
 .DS_Store
 
-config/scheduled_pipelines_config.yaml
+scheduled_pipelines_config.yaml
