@@ -13,11 +13,11 @@ resource "google_service_account" "service_account_pipeline" {
   account_id   = local.pipeline_config_file.project.pipeline_service_account_name
   display_name = "Used by cloud function to run a Vertex Pipeline"
 }
-
 resource "google_project_iam_member" "pipeline_access" {
-  project = local.pipeline_config_file.project.id
-  role    = "roles/editor" // TODO: restrict to only the required permissions
-  member  = "serviceAccount:${google_service_account.service_account_pipeline.email}"
+  for_each = toset(local.pipeline_config_file.project.pipeline_service_account_roles)
+  project  = local.pipeline_config_file.project.id
+  role     = each.value
+  member   = "serviceAccount:${google_service_account.service_account_pipeline.email}"
 }
 
 resource "google_artifact_registry_repository_iam_member" "pipeline_registry_storage" {

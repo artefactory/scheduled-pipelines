@@ -3,6 +3,8 @@ project:
   region: "europe-west1"
   staging_bucket_suffix: "pipeline-runs" # The URI of the bucket will be: gs://<gcp-project-id>-<staging_bucket_suffix>
   pipeline_service_account_name: "service-account-id-pipeline" # SA which used by the cloud function to run the pipelines
+  pipeline_service_account_roles: # Roles given to the pipeline runner service account (pipeline_service_account_name)
+    - "roles/editor"
   scheduler_service_account_name: "service-account-id-scheduler" # SA which used by the scheduler
   repository_name: "pipelines" # Artifact Registry repository name, where the pipeline YAML files are stored
 
