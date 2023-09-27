@@ -2,6 +2,7 @@ project:
   id: gcp-project-id
   region: europe-west1
   repository_name: pipelines # Artifact Registry repository name, where the pipeline YAML files are stored
+
   # The following fields are optional, here are the default values:
 
   # staging_bucket_suffix: pipeline-artifacts # The URI of the bucket will be: gs://<gcp-project-id>-<staging_bucket_suffix>
@@ -21,4 +22,5 @@ scheduled_pipelines:
   #   cron_schedule: "*/7 * * * *"
   #   enable_caching: false
   #   parameter_values:
-  #     name: John Doe
+  #     arg1: val1
+  #     arg2: val2
