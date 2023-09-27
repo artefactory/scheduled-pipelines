@@ -17,7 +17,7 @@ scheduled_pipelines:
     enable_caching: false
     parameter_values:
       name: John Doe
-  # pipeline_name_2: <-- add more pipelines by adding a pipeline name refering to the file name in the directory
+  # pipeline-name-2: <-- add more pipelines by adding a pipeline name (inside the compiled pipeline YAML file, value of `pipelineInfo.name`)
   #   cron_schedule: "*/7 * * * *"
   #   enable_caching: false
   #   parameter_values:
