@@ -97,6 +97,12 @@ This command will:
 make deploy_scheduled_pipeline pipelines
 ```
 
+4. (Optional) If you modify the compiled pipeline and/or you modify the configuration file (change the parameters and/or add new pipelines), just run the same command again:
+
+```bash
+make deploy_scheduled_pipeline <path_to_pipeline_templates_directory>
+```
+
 ## Sanity check
 
 To check that everything is working as expected, you can go to the [Cloud Scheduler page](https://console.cloud.google.com/cloudscheduler) in the Google Cloud console and make sure the right schedulers are present.
