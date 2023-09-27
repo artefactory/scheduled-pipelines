@@ -92,13 +92,14 @@ This command will:
 - Upload the pipeline templates to the Artifact Registry repository.
 
 > Note: you can use the dummy pipeline to test the scheduling:
+
 ```bash
 make deploy_scheduled_pipeline pipelines
 ```
 
 ## Sanity check
 
-To check that everything is working as expected, you can go to the Cloud Scheduler page in the Google Cloud console and make sure the right schedulers are present.
+To check that everything is working as expected, you can go to the [Cloud Scheduler page](https://console.cloud.google.com/cloudscheduler) in the Google Cloud console and make sure the right schedulers are present.
 Then, you can trigger a force run of one of the scheduler and check that the Vertex pipeline is running as expected (go to Vertex AI > Pipelines and select the right region).
 
 <img src="assets/cloud_schedulers.png" alt="Cloud schedulers" />
@@ -111,9 +112,11 @@ Then, you can trigger a force run of one of the scheduler and check that the Ver
 
 First check the logs of the cloud scheduler to see whether the error is coming from the scheduler (permission denied) or the cloud function (internal error).
 
-If the error is a permission denied, check that the service account of the cloud scheduler has the right permissions on the cloud function. If the error is an internal error, check the cloud function logs (Go to the Cloud functions page, click on the cloud function name and go to the "LOGS" tab).
+If the error is a permission denied, check that the service account of the cloud scheduler has the right permissions on the cloud function. If the error is an internal error, check the [cloud function](https://console.cloud.google.com/functions) logs (Go to the Cloud functions page, click on the cloud function name and go to the "LOGS" tab).
 
-2. If the "Status of last execution" is "Success", check that the Vertex pipeline is running as expected (make sure you selected the right region). If this is not the case, check the logs of the cloud function.
+2. If the "Status of last execution" is "Success", check that the [Vertex pipeline](https://console.cloud.google.com/vertex-ai/pipelines) is running as expected (make sure you selected the right region). If this is not the case, check the logs of the cloud function.
+
+<img src="assets/vertex_pipelines.png" alt="Vertex pipelines" />
 
 ## More details
 
