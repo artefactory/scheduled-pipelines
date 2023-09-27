@@ -63,15 +63,9 @@ unzip scheduled-pipelines.zip \
 
 To use this repository, you need to:
 
-1. Initialize your own scheduled pipelines config file:
+1. Replace the values in your configuration file  [`scheduled_pipelines_config.yaml`](scheduled_pipelines_config.yaml) with the values **corresponding to your project**.
 
-```bash
-mv scheduled_pipelines_config_example.yaml scheduled_pipelines_config.yaml
-```
-
-2. **Replace the values** in the created configuration file  [`scheduled_pipelines_config.yaml`](scheduled_pipelines_config.yaml) with the values **corresponding to your project**.
-
-3. Enable the required APIs:
+2. Enable the required APIs:
 
 ```bash
 gcloud services enable \
@@ -84,7 +78,7 @@ gcloud services enable \
   --project=$GCP_PROJECT_ID
 ```
 
-4. Create a directory with the compiled pipeline(s) inside & deploy the scheduled pipeline(s) and its (their) infrastructure:
+3. Create a directory with the compiled pipeline(s) inside & deploy the scheduled pipeline(s) and its (their) infrastructure:
 
 ```bash
 make deploy_scheduled_pipeline <path_to_pipeline_templates_directory>

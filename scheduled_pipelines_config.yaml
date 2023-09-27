@@ -1,0 +1,25 @@
+project:
+  id: gcp-project-id
+  region: europe-west1
+  staging_bucket_suffix: pipeline-runs # The URI of the bucket will be: gs://<gcp-project-id>-<staging_bucket_suffix>
+  pipeline_service_account_name: service-account-id-pipeline # SA which used by the cloud function to run the pipelines
+  pipeline_service_account_roles: # Roles given to the pipeline runner service account (pipeline_service_account_name)
+    - roles/editor
+  scheduler_service_account_name: service-account-id-scheduler # SA which used by the scheduler
+  repository_name: pipelines # Artifact Registry repository name, where the pipeline YAML files are stored
+
+scheduled_pipelines:
+  pipeline_name_1: # <-- The name of the pipeline (inside the compiled pipeline YAML file, value of `pipelineInfo.name`)
+    cron_schedule: "*/6 * * * *"
+    time_zone: Europe/Paris
+    enable_caching: false
+    parameter_values: # <-- The values of the pipeline input parameters
+      param1: val1
+      param2: val2
+  # If you want to use the dummy pipeline of this repository, delete the preceding block (pipeline_name_1: ...) and uncomment the following block:
+  # hello-world-pipeline:
+  #   cron_schedule: "*/7 * * * *"
+  #   time_zone: Europe/Paris
+  #   enable_caching: false
+  #   parameter_values:
+  #     name: John Doe
