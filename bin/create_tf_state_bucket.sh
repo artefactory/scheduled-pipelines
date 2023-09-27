@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
-region=$(grep 'region' scheduled_pipelines_config.yaml | sed -n 's/.*region:[^a-zA-Z0-9-]*\([a-zA-Z0-9-]*\).*/\1/p')
-project_id=$(grep 'id' scheduled_pipelines_config.yaml | sed -n 's/.*id:[^a-zA-Z0-9-]*\([a-zA-Z0-9-]*\).*/\1/p')
+region=$(yq -e .project.region scheduled_pipelines_config.yaml)
+project_id=$(yq -e .project.id scheduled_pipelines_config.yaml)
 bucket_name=${project_id}-scheduled-pipelines-tf-state
 
 bucket_exists=$(gsutil list -p ${project_id} | grep ${bucket_name} | wc -l)

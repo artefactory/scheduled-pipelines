@@ -3,9 +3,9 @@
 path_to_pipeline_templates_directory=$1
 path_to_pipeline_templates_directory="${path_to_pipeline_templates_directory%/}"
 
-region=$(grep 'region' scheduled_pipelines_config.yaml | sed -n 's/.*region:[^a-zA-Z0-9-]*\([a-zA-Z0-9-]*\).*/\1/p')
-project_id=$(grep 'id' scheduled_pipelines_config.yaml | sed -n 's/.*id:[^a-zA-Z0-9-]*\([a-zA-Z0-9-]*\).*/\1/p')
-repository_name=$(grep 'repository_name' scheduled_pipelines_config.yaml | sed -n 's/.*repository_name:[^a-zA-Z0-9-]*\([a-zA-Z0-9-]*\).*/\1/p')
+region=$(yq -e .project.region scheduled_pipelines_config.yaml)
+project_id=$(yq -e .project.id scheduled_pipelines_config.yaml)
+repository_name=$(yq -e .project.repository_name scheduled_pipelines_config.yaml)
 
 echo "Artifact Registry: ${region}-kfp.pkg.dev/${project_id}/${repository_name}"
 
