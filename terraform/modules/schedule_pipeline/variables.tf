@@ -2,7 +2,7 @@ variable "pipeline" {
   type = object({
     pipeline_name    = string
     cron_schedule    = string
-    time_zone        = string
+    time_zone        = optional(string, "Europe/Paris")
     enable_caching   = bool
     parameter_values = map(string)
     retry_config = optional(object({
