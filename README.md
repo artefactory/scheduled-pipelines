@@ -29,7 +29,7 @@ It does for you the creation of the required service accounts, configures the re
 - Having `yq` installed (instructions [here](https://github.com/mikefarah/yq/#install) for Linux and for MacOS: `brew install yq`)
 - Having a compiled Vertex pipeline (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file))
 
-> Note: if you don't have a compiled pipeline or have trouble compiling it, you can use the [`hello_world_pipeline.yaml`](examples/hello_world_pipeline.yaml) file to test the scheduling.
+> Note: if you don't have a compiled pipeline or have trouble compiling it, you can use the [`hello_world_pipeline.yaml`](pipelines/hello_world_pipeline.yaml) file in the `pipelines`directory to test the scheduling.
 
 ## Setup
 
@@ -93,7 +93,7 @@ This command will:
 
 > Note: you can use the dummy pipeline to test the scheduling:
 ```bash
-make deploy_scheduled_pipeline examples
+make deploy_scheduled_pipeline pipelines
 ```
 
 ## Sanity check
