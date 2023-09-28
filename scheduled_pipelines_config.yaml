@@ -12,13 +12,13 @@ project:
   # scheduler_service_account_name: vertex-scheduler # SA which used by the scheduler
 
 scheduled_pipelines:
-  hello_world_pipeline:
+  hello_world_pipeline: # <-- Reference to the pipeline YAML filename (without the .yaml extension) in `pipelines`directory
     cron_schedule: "*/20 * * * *"
     # time_zone: Europe/Paris # <-- optional, default: Europe/Paris
     enable_caching: false
     parameter_values:
       name: John Doe
-  # pipeline-name-2: <-- add more pipelines by adding a pipeline name (inside the compiled pipeline YAML file, value of `pipelineInfo.name`)
+  # pipeline_name_2: <-- add more pipelines by adding other pipeline filenames
   #   cron_schedule: "*/7 * * * *"
   #   enable_caching: false
   #   parameter_values:
