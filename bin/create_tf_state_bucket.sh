@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
-region=$(yq -e .project.region scheduled_pipelines_config.yaml)
-project_id=$(yq -e .project.id scheduled_pipelines_config.yaml)
+region=$(yq -er .project.region scheduled_pipelines_config.yaml)
+project_id=$(yq -er .project.id scheduled_pipelines_config.yaml)
 bucket_name=${project_id}-scheduled-pipelines-tf-state
 
 bucket_exists=$(gsutil list -p ${project_id} | grep ${bucket_name} | wc -l)
