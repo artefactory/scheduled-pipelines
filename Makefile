@@ -3,6 +3,7 @@ deploy_scheduled_pipeline: zip_cloud_function
 	@bash bin/create_tf_state_bucket.sh
 	@cd terraform && terraform init && terraform apply -auto-approve
 	@bash bin/upload_pipeline_template.sh
+	@bash bin/logs_end_of_command.sh
 
 # help: help						- Display this makefile's help information
 .PHONY: help
