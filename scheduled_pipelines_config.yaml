@@ -3,7 +3,7 @@ project:
   region: europe-west1
   repository_name: pipelines # Artifact Registry repository name, where the pipeline YAML files are stored
 
-  # The following fields are optional, here are the default values:
+  # Optional fields, with their default values:
 
   # staging_bucket_suffix: pipeline-artifacts # The URI of the bucket will be: gs://<gcp-project-id>-<staging_bucket_suffix>
   # pipeline_service_account_name: vertex-pipelines # SA which used by the cloud function to run the pipelines
@@ -21,6 +21,6 @@ scheduled_pipelines:
   # pipeline_name_2: <-- add more pipelines by adding other pipeline filenames
   #   cron_schedule: "*/7 * * * *"
   #   enable_caching: false
-  #   parameter_values:
+  #   parameter_values: # <-- pipeline parameters
   #     arg1: val1
   #     arg2: val2
