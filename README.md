@@ -29,7 +29,7 @@ It does for you the creation of the required service accounts, configures the re
 - Having `yq` installed (instructions [here](https://github.com/mikefarah/yq/#install) for Linux and for MacOS: `brew install yq`)
 - Having a compiled Vertex pipeline (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file))
 
-> Note: if you don't have a compiled pipeline or have trouble compiling it, you can use the [`hello_world_pipeline.yaml`](pipelines/hello_world_pipeline.yaml) file in the `pipelines`directory to test the scheduling.
+> Note: if you don't have a compiled pipeline or have trouble compiling it, you can use the [`hello_world_pipeline.yaml`](pipelines/hello_world_pipeline.yaml) file in the `pipelines` directory to test the scheduling.
 
 ## Setup
 
@@ -78,10 +78,14 @@ gcloud services enable \
   --project=$GCP_PROJECT_ID
 ```
 
-3. Create a directory with the compiled pipeline(s) inside & deploy the scheduled pipeline(s) and its (their) infrastructure:
+3. In the [`pipelines`](./pipelines/) directory, put your compiled pipeline(s) inside.
+
+> Note: you can use the dummy pipeline (which is already in the `pipelines` directory) to test the scheduling.
+
+4. Deploy the scheduled pipeline(s) and its (their) infrastructure:
 
 ```bash
-make deploy_scheduled_pipeline <path_to_pipeline_templates_directory>
+make deploy_scheduled_pipeline
 ```
 
 This command will:
@@ -91,16 +95,10 @@ This command will:
 - Give the appropriate permissions to the service accounts.
 - Upload the pipeline templates to the Artifact Registry repository.
 
-> Note: you can use the dummy pipeline to test the scheduling:
+5. (Optional) If you modify the compiled pipeline(s) and/or you modify the configuration file (change the parameters and/or add new pipelines), just run the same command again:
 
 ```bash
-make deploy_scheduled_pipeline pipelines
-```
-
-4. (Optional) If you modify the compiled pipeline and/or you modify the configuration file (change the parameters and/or add new pipelines), just run the same command again:
-
-```bash
-make deploy_scheduled_pipeline <path_to_pipeline_templates_directory>
+make deploy_scheduled_pipeline
 ```
 
 ## Sanity check

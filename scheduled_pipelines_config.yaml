@@ -12,7 +12,7 @@ project:
   # scheduler_service_account_name: vertex-scheduler # SA which used by the scheduler
 
 scheduled_pipelines:
-  hello-world-pipeline:
+  hello_world_pipeline:
     cron_schedule: "*/20 * * * *"
     # time_zone: Europe/Paris # <-- optional, default: Europe/Paris
     enable_caching: false
