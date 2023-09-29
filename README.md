@@ -81,7 +81,7 @@ gcloud services enable \
 4. Deploy the scheduled pipeline(s) and its (their) infrastructure:
 
 ```bash
-make deploy_scheduled_pipeline
+make deploy_scheduled_pipelines
 ```
 
 This command will:
@@ -121,7 +121,7 @@ If the error is a permission denied, check that the service account of the cloud
 
 ## More details
 
-The required permissions required to execute the `make deploy_scheduled_pipeline` command are:
+The required permissions required to execute the `make deploy_scheduled_pipelines` command are:
 
 | Resource creation        | Permission(s) required                                    |
 | ------------------------ | --------------------------------------------------------- |

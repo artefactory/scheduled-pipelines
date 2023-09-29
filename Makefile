@@ -1,5 +1,5 @@
-.PHONY: deploy_scheduled_pipeline
-deploy_scheduled_pipeline: zip_cloud_function
+.PHONY: deploy_scheduled_pipelines
+deploy_scheduled_pipelines: zip_cloud_function
 	@bash bin/create_tf_state_bucket.sh
 	@cd terraform && terraform init && terraform apply -auto-approve
 	@bash bin/upload_pipeline_template.sh
