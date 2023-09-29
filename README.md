@@ -61,7 +61,7 @@ unzip scheduled-pipelines.zip \
 
 To use this repository, you need to:
 
-1. In the [`pipelines`](./pipelines/) directory, put your compiled pipeline(s) (YAML file) inside or directly use the dummy pipeline (already in the `pipelines` directory).
+1. In the [`pipelines`](./pipelines/) directory, put your compiled pipeline(s) (YAML file) inside or directly use the dummy pipeline "`hello_world_pipeline.yaml`" (already in the `pipelines` directory).
 
 2. Replace the values in your configuration file  [`scheduled_pipelines_config.yaml`](scheduled_pipelines_config.yaml) with the values **corresponding to your project**.
 
