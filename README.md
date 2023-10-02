@@ -26,7 +26,8 @@ It does for you the creation of the required service accounts, configures the re
 - Google SDK (gcloud) (instructions [here](https://cloud.google.com/sdk/docs/install#installation_instructions))
 - Terraform (tested for version v1.5.6) (instructions [here](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform))
 - Having `wget` installed (instructions [here](https://www.gnu.org/software/wget/) for Linux and for MacOS: `brew install wget`)
-- Having `yq` installed (instructions [here](https://github.com/mikefarah/yq/#install) for Linux and for MacOS: `brew install yq`)
+- Having `jq` installed (instructions [here](https://stedolan.github.io/jq/download/) for Linux and for MacOS: `brew install jq`. Tested for version jq-1.6)
+- Having `yq` installed (instructions [here](https://github.com/mikefarah/yq/#install) for Linux and for MacOS: `brew install yq`. Tested for version 4.35.2)
 - Having a compiled Vertex pipeline (instructions [here](https://cloud.google.com/vertex-ai/docs/pipelines/build-pipeline#compile_your_pipeline_into_a_yaml_file)) or  use the [`hello_world_pipeline.yaml`](pipelines/hello_world_pipeline.yaml) file in the `pipelines` directory to test the scheduling rapidly.
 
 ## Setup

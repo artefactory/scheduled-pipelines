@@ -36,6 +36,6 @@ resource "google_cloudfunctions_function" "cloud_function" {
     REGION                      = local.pipeline_config_file.project.region
     PIPELINE_ROOT_PATH          = local.pipeline_root_path
     SERVICE_ACCOUNT_ID_PIPELINE = local.pipeline_service_account_name
-    REPOSITORY_NAME             = local.pipeline_config_file.project.repository_name
+    REPOSITORY_NAME             = local.repository_name
   }
 }

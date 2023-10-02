@@ -1,10 +1,10 @@
 project:
   id: gcp-project-id
   region: europe-west1
-  repository_name: pipelines # Artifact Registry repository name, where the pipeline YAML files are stored
 
   # Optional fields, with their default values:
 
+  # repository_name: pipelines # Artifact Registry repository name, where the pipeline YAML files are stored
   # staging_bucket_suffix: pipeline-artifacts # The URI of the bucket will be: gs://<gcp-project-id>-<staging_bucket_suffix>
   # pipeline_service_account_name: vertex-pipelines # SA which used by the cloud function to run the pipelines
   # pipeline_service_account_roles: # Roles given to the pipeline runner service account (pipeline_service_account_name)
