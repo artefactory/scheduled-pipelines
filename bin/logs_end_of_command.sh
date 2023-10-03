@@ -1,12 +1,20 @@
 #!/bin/bash -e
 
-scheduled_pipelines=$(yq e '... comments=""' scheduled_pipelines_config.yaml | yq -e '.scheduled_pipelines | keys')
-
 echo "
-Congrats for scheduling your pipelines! 🎉
+--------------------------------------------
+|            Scheduled pipelines           |"
+echo "--------------------------------------------"
 
-Recap of the pipelines scheduled:"
-echo "${scheduled_pipelines}"
+scheduled_pipeline=$(yq -e '... comments=""' scheduled_pipelines_config.yaml | yq -e '.scheduled_pipelines')
+for pipeline in $(echo "${scheduled_pipeline}" | yq 'keys'); do
+    cron_schedule=$(echo "${scheduled_pipeline}" | yq ".${pipeline}.cron_schedule")
+    if [ "${cron_schedule}" != "null" ]; then
+        printf "| %-25s%15s |\n" "${pipeline:0:25}" "${cron_schedule:0:15}"
+    fi
+done
+
+echo "--------------------------------------------"
+
 echo "
 You can now:
 - [If you deploy a new pipeline for the first time] Wait about 3 minutes that the Cloud Scheduler job is ready to be used
