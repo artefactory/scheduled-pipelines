@@ -20,20 +20,20 @@ def run_vertex_pipeline(request: flask.request) -> str:  # noqa: ARG001
     request_str = request.data.decode("utf-8")
     request_json = json.loads(request_str)
     logger.info(f"Request from cloud scheduler: {request_json}")
-    required_fields = ["display_name", "pipeline_name", "parameter_values"]
+    required_fields = ["pipeline_name", "parameter_values", "enable_caching"]
 
     if request_json:
         for required_field in required_fields:
             if required_field not in request_json:
-                raise ValueError(f"JSON is invalid, or missing a '{required_field}' property")
-        display_name = request_json["display_name"]
+                raise ValueError(f"JSON request body is invalid, or missing a '{required_field}' property")
         pipeline_name = request_json[
             "pipeline_name"
         ]  # Note: This is the name written in the pipeline decorator when defining the pipeline
         # This is the value used to identify the YAML pipeline file in the Artifact registry
         parameter_values = request_json["parameter_values"]
+        enable_caching = request_json["enable_caching"]
     else:
-        raise ValueError("JSON is invalid/missing")
+        raise ValueError("JSON request body is invalid/missing")
 
     aiplatform.init(
         project=PROJECT_ID,
@@ -41,11 +41,11 @@ def run_vertex_pipeline(request: flask.request) -> str:  # noqa: ARG001
     )
 
     job = aiplatform.PipelineJob(
-        display_name=display_name,
+        display_name=pipeline_name,
         template_path=f"https://{REGION}-kfp.pkg.dev/{PROJECT_ID}/{REPOSITORY_NAME}/{pipeline_name}/latest",
-        pipeline_root=PIPELINE_ROOT_PATH,
+        pipeline_root=f"{PIPELINE_ROOT_PATH}/{pipeline_name}",
         location=REGION,
-        enable_caching=False,
+        enable_caching=enable_caching,
         parameter_values=parameter_values,
     )
     job.submit(
